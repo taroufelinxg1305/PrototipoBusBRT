@@ -9,8 +9,8 @@ import java.net.Socket;
 
 public class TCPLocalServer {
 
-	static double latiprom =0; //son los valores promedio que se enviaran en algun momento a la plataforma rutasBuses
-	static double longprom=0;
+	private static double latiprom =0; //son los valores promedio que se enviaran en algun momento a la plataforma cloudBRT
+	private static double longprom=0;
 	static int moduloPromedio=0;
     public static void main(String[] args) throws IOException {
     	// Define que el socket escuchara en el puerto 9091
@@ -19,7 +19,7 @@ public class TCPLocalServer {
         try {
             while (true) {
             	// Abre el socket y acepta las conexiones
-                Socket socket = listener.accept(); //verifica si la conexion fu exitosa
+                Socket socket = listener.accept(); //verifica si la conexion fue exitosa
                 System.out.print("Server has connected!\n");
 
                 try {
