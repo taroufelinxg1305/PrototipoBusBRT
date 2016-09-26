@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class SampleServer {
+public class TCPLocalServer {
 
 	static double latiprom =0; //son los valores promedio que se enviaran en algun momento a la plataforma rutasBuses
 	static double longprom=0;
