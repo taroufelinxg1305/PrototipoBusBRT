@@ -10,6 +10,7 @@ import java.net.URL;
 import javax.json.Json;
 import javax.json.JsonObject;
 
+import ServidorTCP.TCPLocalServer;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -44,8 +45,8 @@ public class EnviarPos implements Runnable{
 		    		         .add("placa", "XDB725")	
 		    		         .add("coordenada",Json.createObjectBuilder()
 		    		         
-				    		 .add("latitud", 7.3431231443)
-						     .add("longitud", 67.4567864324))
+				    		 .add("latitud", TCPLocalServer.getCurrentLati())
+						     .add("longitud", TCPLocalServer.getCurrentLong()))
 		    	     
 		    	     .build();
 				input= Entrada.toString();

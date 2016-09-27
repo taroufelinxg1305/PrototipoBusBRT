@@ -9,8 +9,14 @@ import java.net.Socket;
 
 public class TCPLocalServer {
 
-	private static double latiprom =0; //son los valores promedio que se enviaran en algun momento a la plataforma cloudBRT
-	private static double longprom=0;
+	private static double currentLati=0; //son los valores promedio que se enviaran en algun momento a la plataforma cloudBRT
+	private static double currentLong=0;
+	public static double getCurrentLati() {
+		return currentLati;
+	}
+	public static double getCurrentLong() {
+		return currentLong;
+	}
 	static int moduloPromedio=0;
     public static void main(String[] args) throws IOException {
     	// Define que el socket escuchara en el puerto 9091
@@ -36,18 +42,10 @@ public class TCPLocalServer {
                         // Hace el tratamiento al texto recibido, en este caso imprimir en la consola
                         
                         //System.out.println(input);
-                     NmeatoJson.SepararToken(input);
-                     if(moduloPromedio==9) //cada 10 lineas leidas y enviadas por el cliente hace la operacion promedio
-                     {
-                    	 moduloPromedio=0;
-                    	 //trae el arreglo que almacena las ultimas 10 coordenadas
-                    	 promedios= Operaciones.promedioCoor(NmeatoJson.getLastCoor());
-                    	 latiprom=promedios[0];
-                    	 longprom=promedios[1];
-                    	 System.out.println("promedios: "+ latiprom+","+longprom);
+                     promedios=NmeatoDatos.SepararToken(input);
+                     
+                     
                      }
-                     else moduloPromedio++;
-                    }
                 } finally {
                     socket.close();
                 }

@@ -2,20 +2,14 @@ package ServidorTCP;
 
 import java.util.StringTokenizer;
 
-public class NmeatoJson {
+public class NmeatoDatos {
 
-	private static double[][] lastCoor = new double[10][2]; // matriz que
-															// contiene las diez
-															// ultimas lecturas
-															// de latitud y
-															// longitud
-	static int tamLastcoor = 0; // indice para recorrer la matriz
 	/*
 	 * metodo que recibe un string(GGA nmea) y de el se estraen latitud y
 	 * longitud absolutas
 	 */
 
-	public static void SepararToken(String s) {
+	public static double[] SepararToken(String s) {
 
 		// entrada=
 		// "$GPGGA,181908.00,3404.7041778,N,07044.3966270,W,4,13,1.00,495.144,M,29.200,M,0.10,0000*40";
@@ -52,41 +46,20 @@ public class NmeatoJson {
 		String linea = "" + lat + "," + lon;
 		Operaciones.guardar(linea); // almacena un historico de los pares de
 									// coordenadas absolutas(latitud,longitud)
-		almacenTemp(lat, lon);
+		double[] currentCoor = new double[2];
+		currentCoor[0]=0;
+		currentCoor[1]=0;
 
-	}
+		try {
+			currentCoor[0] = Double.parseDouble(lat);
+			currentCoor[1] = Double.parseDouble(lon);
 
-	/*
-	 * almacena las diez ultimos pares coordenadas(latitud, longitud)
-	 */
-	private static void almacenTemp(String s1, String s2) {
-		if (tamLastcoor < 10) {
-			try {
-				lastCoor[tamLastcoor][0] = Double.parseDouble(s1);
-				lastCoor[tamLastcoor][1] = Double.parseDouble(s2);
-				tamLastcoor++;
-			} catch (NumberFormatException n) {
-				System.out.println("fallo la conversion de coordenada");
-			}
-
-		} else {
-			for (int i = 0; i < tamLastcoor - 1; i++) {
-				lastCoor[i][0] = lastCoor[i + 1][0];
-				lastCoor[i][1] = lastCoor[i + 1][1];
-			}
-
-			try {
-				lastCoor[tamLastcoor - 1][0] = Double.parseDouble(s1);
-				lastCoor[tamLastcoor - 1][1] = Double.parseDouble(s2);
-			} catch (NumberFormatException n) {
-				System.out.println("fallo la conversion de coordenada");
-			}
+		} catch (NumberFormatException nfe) 
+		{
+			System.out.println("fallo la conversion de coordenada");
 		}
 
-	}
-
-	public static double[][] getLastCoor() {
-		return lastCoor;
+		return currentCoor;
 	}
 
 }
