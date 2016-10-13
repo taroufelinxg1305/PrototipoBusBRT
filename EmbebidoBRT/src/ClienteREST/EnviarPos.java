@@ -9,6 +9,7 @@ import java.net.URL;
 import javax.json.Json;
 import javax.json.JsonObject;
 
+import ServidorTCP.Coordenadas;
 import ServidorTCP.TCPLocalServer;
 
 import java.util.concurrent.Executors;
@@ -47,8 +48,8 @@ public class EnviarPos implements Runnable{
 		    		         .add("placa", "XDB725")	
 		    		         .add("coordenada",Json.createObjectBuilder()
 		    		         
-				    		 .add("latitud", TCPLocalServer.getCurrentLati())
-						     .add("longitud", TCPLocalServer.getCurrentLong()))
+				    		 .add("latitud",Coordenadas.getLatitud())
+						     .add("longitud", Coordenadas.getLongitud()))
 		    	     
 		    	     .build();
 				input= Entrada.toString();

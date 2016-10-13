@@ -8,12 +8,12 @@ public class NmeatoDatos {
 	 * metodo que recibe un string(GGA nmea) y de el se estraen latitud y
 	 * longitud absolutas
 	 */
-
-	public static double[] SepararToken(String s) {
+	public static void SepararToken(String s) {
 
 		// entrada=
 		// "$GPGGA,181908.00,3404.7041778,N,07044.3966270,W,4,13,1.00,495.144,M,29.200,M,0.10,0000*40";
 		String entrada = s;
+
 		StringTokenizer st = new StringTokenizer(entrada, ",");
 		String[] tok = new String[st.countTokens()]; // vector par almacenar
 														// cada datos separado
@@ -47,19 +47,14 @@ public class NmeatoDatos {
 				+ "," + lat + "," + lon;
 		Operaciones.guardar(linea); // almacena un historico de los pares de
 									// coordenadas absolutas(latitud,longitud)
-		double[] currentCoor = new double[2];
-		currentCoor[0] = 0;
-		currentCoor[1] = 0;
-
 		try {
-			currentCoor[0] = Double.parseDouble(lat);
-			currentCoor[1] = Double.parseDouble(lon);
+			Coordenadas.setLatitud(Double.parseDouble(lat));
+			Coordenadas.setLongitud(Double.parseDouble(lon));
 
 		} catch (NumberFormatException nfe) {
 			System.out.println("fallo la conversion de coordenada");
 		}
 
-		return currentCoor;
 	}
 
 }

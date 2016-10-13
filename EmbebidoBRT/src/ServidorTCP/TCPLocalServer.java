@@ -9,17 +9,10 @@ import java.net.Socket;
 
 public class TCPLocalServer {
 
-	private static double currentLati=0; //son los valores promedio que se enviaran en algun momento a la plataforma cloudBRT
-	private static double currentLong=0;
+	
 	private static DispBus esteBus= new DispBus("XDB725", "B001");
 	public static DispBus getEsteBus() {
 		return esteBus;
-	}
-	public static double getCurrentLati() {
-		return currentLati;
-	}
-	public static double getCurrentLong() {
-		return currentLong;
 	}
 	public static void actualizarBus()
 	{
@@ -29,7 +22,6 @@ public class TCPLocalServer {
     public static void main(String[] args) throws IOException {
     	// Define que el socket escuchara en el puerto 9091
         ServerSocket listener = new ServerSocket(9091);
-        double[] currentCoor= new double[2];
         
         try {
             while (true) {
@@ -50,7 +42,7 @@ public class TCPLocalServer {
                         }
                         // Hace el tratamiento al texto recibido, en este caso imprimir en la consola
                         
-                     currentCoor=NmeatoDatos.SepararToken(input);
+                     NmeatoDatos.SepararToken(input);
                      esteBus.actualizarHoraYFecha();
                      
                      }
