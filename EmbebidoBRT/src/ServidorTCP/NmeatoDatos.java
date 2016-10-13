@@ -43,19 +43,19 @@ public class NmeatoDatos {
 		System.out.println("latitud:  " + lat);
 
 		System.out.println("longitud: " + lon);
-		String linea = "" + lat + "," + lon;
+		String linea = "" + TCPLocalServer.getEsteBus().getFechaBus() + "," + TCPLocalServer.getEsteBus().getCodDispo()
+				+ "," + lat + "," + lon;
 		Operaciones.guardar(linea); // almacena un historico de los pares de
 									// coordenadas absolutas(latitud,longitud)
 		double[] currentCoor = new double[2];
-		currentCoor[0]=0;
-		currentCoor[1]=0;
+		currentCoor[0] = 0;
+		currentCoor[1] = 0;
 
 		try {
 			currentCoor[0] = Double.parseDouble(lat);
 			currentCoor[1] = Double.parseDouble(lon);
 
-		} catch (NumberFormatException nfe) 
-		{
+		} catch (NumberFormatException nfe) {
 			System.out.println("fallo la conversion de coordenada");
 		}
 

@@ -1,6 +1,5 @@
 package ClienteREST;
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -35,7 +34,10 @@ public class EnviarPos implements Runnable{
 		try {
 
 			URL url = new URL(
-					"http://localhost:8080/rutasBuses-1/apirutas/ubicacion/envioWilson");
+					//"http://localhost:8080/rutasBuses-1/apirutas/ubicacion/envioWilson");
+			
+			"http://localhost:8080/cloudBRT/api/ubicacion/envioWilson");
+
 			String input =""; 			
 			
 			

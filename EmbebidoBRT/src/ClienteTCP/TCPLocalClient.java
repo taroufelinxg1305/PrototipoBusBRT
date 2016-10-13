@@ -1,10 +1,8 @@
 package ClienteTCP;
 
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -13,6 +11,8 @@ import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import ServidorTCP.TCPLocalServer;
 
 public class TCPLocalClient implements Runnable {
 
@@ -59,7 +59,7 @@ public class TCPLocalClient implements Runnable {
 		String str ="";  //string que almacena temporalmente cada linea del archivo de texto
 
 		try {
-			Scanner input = new Scanner(new File("nmea-sample.txt")); //cargo el archivo de texto
+			Scanner input = new Scanner(new File("nmea-line.txt")); //cargo el archivo de texto
 			while (input.hasNextLine()) { //mientras halla una linea mas
 				str=input.nextLine();  //Cargo la siguiente linea
 				list.add(str);         //y se guarda en la colecion
