@@ -6,12 +6,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import javax.json.Json;
-import javax.json.JsonObject;
-
-import ServidorTCP.Coordenadas;
-import ServidorTCP.TCPLocalServer;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -39,10 +33,10 @@ public class EnviarPos implements Runnable{
 			
 			"http://localhost:8080/cloudBRT/api/ubicacion/envioWilson");
 
-			String input =""; 			
+			String input = CrearMensajeJson.armarJson(); 			
 			
 			
-			
+			/*
 		     JsonObject Entrada = Json.createObjectBuilder()
 		    		 
 		    		         .add("placa", "XDB725")	
@@ -52,8 +46,8 @@ public class EnviarPos implements Runnable{
 						     .add("longitud", Coordenadas.getLongitud()))
 		    	     
 		    	     .build();
-				input= Entrada.toString();
-				//System.out.println(input );
+				input= Entrada.toString();*/
+				System.out.println(input );
 			
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);

@@ -6,10 +6,8 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
 public class TCPLocalServer {
 
-	
 	private static DispBus esteBus= new DispBus("XDB725", "B001");
 	public static DispBus getEsteBus() {
 		return esteBus;
@@ -44,7 +42,7 @@ public class TCPLocalServer {
                         
                      NmeatoDatos.SepararToken(input);
                      esteBus.actualizarHoraYFecha();
-                     
+                    
                      }
                 } finally {
                     socket.close();
