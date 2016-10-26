@@ -13,7 +13,7 @@ public class NmeatoDatos {
 		// entrada=
 		// "$GPGGA,181908.00,3404.7041778,N,07044.3966270,W,4,13,1.00,495.144,M,29.200,M,0.10,0000*40";
 		String entrada = s;
-
+		Coordenadas coord;
 		StringTokenizer st = new StringTokenizer(entrada, ",");
 		String[] tok = new String[st.countTokens()]; // vector par almacenar
 														// cada datos separado
@@ -39,17 +39,15 @@ public class NmeatoDatos {
 			lon = "-" + tok[4]; // si la longitud pertene al hemisferio oeste,
 								// la coordenada absoluta de longitud es
 								// negativa
-
-		System.out.println("latitud:  " + lat);
-
-		System.out.println("longitud: " + lon);
 		String linea = "" + TCPLocalServer.getEsteBus().getFechaBus() + "," + TCPLocalServer.getEsteBus().getCodDispo()
 				+ "," + lat + "," + lon;
 		Operaciones.guardar(linea); // almacena un historico de los pares de
 									// coordenadas absolutas(latitud,longitud)
+        
 		try {
-			Coordenadas.setLatitud(Double.parseDouble(lat));
-			Coordenadas.setLongitud(Double.parseDouble(lon));
+			ThisBusCoordenadas.setLatitud(Double.parseDouble(lat));
+			ThisBusCoordenadas.setLongitud(Double.parseDouble(lon));
+
 
 		} catch (NumberFormatException nfe) {
 			System.out.println("fallo la conversion de coordenada");

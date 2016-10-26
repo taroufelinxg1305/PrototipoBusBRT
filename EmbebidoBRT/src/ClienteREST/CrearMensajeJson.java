@@ -5,6 +5,8 @@ import javax.json.Json;
 import javax.json.JsonObject;
 
 import ServidorTCP.Coordenadas;
+import ServidorTCP.TCPLocalServer;
+import ServidorTCP.ThisBusCoordenadas;
 
 public class CrearMensajeJson {
 
@@ -13,9 +15,9 @@ public class CrearMensajeJson {
 
 		JsonObject Entrada = Json.createObjectBuilder()
 
-				.add("placa", "XDB725").add("coordenada", Json.createObjectBuilder()
-						.add("latitud", Coordenadas.getLatitud())
-						.add("longitud", Coordenadas.getLongitud()))
+				.add("Placa", "XDB725").add("Tde", "2016/10/16 13:13:10").add("Coordenada", Json.createObjectBuilder()
+						.add("Latitud", ""+ThisBusCoordenadas.getLatitud())
+						.add("Longitud",""+ThisBusCoordenadas.getLongitud()))
 						.build();
 		input = Entrada.toString();
 		

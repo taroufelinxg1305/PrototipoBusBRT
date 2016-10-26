@@ -32,8 +32,7 @@ public class Fecha {
 	public String getFecha()
 	{
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	     Timestamp stamp = new Timestamp(System.currentTimeMillis());
-	     Date date = new Date(stamp.getTime());
+	     Date date = new Date();
 	     fecha=dateFormat.format(date);
 		return fecha;
 	}

@@ -31,7 +31,7 @@ public class EnviarPos implements Runnable{
 			URL url = new URL(
 					//"http://localhost:8080/rutasBuses-1/apirutas/ubicacion/envioWilson");
 			
-			"http://localhost:8080/cloudBRT/api/ubicacion/envioWilson");
+			"http://localhost:8080/cloudBRT/api/colector/buses");
 
 			String input = CrearMensajeJson.armarJson(); 			
 			

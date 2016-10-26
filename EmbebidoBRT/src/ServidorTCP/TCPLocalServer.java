@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ClienteREST.CrearMensajeJson;
+import EventBus.EventBusClass;
+
 public class TCPLocalServer {
 
 	private static DispBus esteBus= new DispBus("XDB725", "B001");
@@ -16,10 +19,10 @@ public class TCPLocalServer {
 	{
 		esteBus.actualizarHoraYFecha();
 	}
-	static int moduloPromedio=0;
     public static void main(String[] args) throws IOException {
     	// Define que el socket escuchara en el puerto 9091
         ServerSocket listener = new ServerSocket(9091);
+
         
         try {
             while (true) {
@@ -41,8 +44,10 @@ public class TCPLocalServer {
                         // Hace el tratamiento al texto recibido, en este caso imprimir en la consola
                         
                      NmeatoDatos.SepararToken(input);
-                     esteBus.actualizarHoraYFecha();
-                    
+                    System.out.println(ThisBusCoordenadas.getLatitud()+"  ,"+ ThisBusCoordenadas.getLongitud());
+                    EventBusClass.c.setLatitud(ThisBusCoordenadas.getLatitud());
+                    EventBusClass.c.setLongitud(ThisBusCoordenadas.getLongitud());
+                    esteBus.actualizarHoraYFecha();
                      }
                 } finally {
                     socket.close();

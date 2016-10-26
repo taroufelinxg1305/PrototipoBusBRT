@@ -1,17 +1,42 @@
 package EventBus;
- 
-import com.google.common.eventbus.EventBus;
- 
-public class SimpleEventBusExample {
-    public static void main(String[] args) {
-        EventBus eventBus = new EventBus();
-        eventBus.register(new SimpleListener());
-        System.out.println("Post Simple EventBus Example");
-        
-        eventBus.register(new OtroSimpleListener());
-        System.out.println("post another simple eventbus example");
-        eventBus.post("Simple EventBus Example");
 
-        eventBus.post("otro nuevo mensage event bus");
-    }
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import com.google.common.eventbus.EventBus;
+
+import ClienteTCP.TCPLocalClient;
+import ServidorTCP.Coordenadas;
+import ServidorTCP.TCPLocalServer;
+import ServidorTCP.ThisBusCoordenadas;
+
+public class EventBusClass implements Runnable{
+	public static Coordenadas c = new Coordenadas(0, 0); 
+	
+	public static void main(String[] args) {
+		// Crea el scheduler
+				ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
+				// Programa la ejecución cada 2 segundos del hilo (servicio). La
+				// ejecuión empieza a los 5 segundos
+				executor.scheduleAtFixedRate(new EventBusClass(), 5, 2, TimeUnit.SECONDS);
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		EventBus eventBus = new EventBus();
+		eventBus.register(new ParaEnvioListener());
+		if (c != null) {
+			eventBus.post(c);
+			System.out.println(TCPLocalServer.getEsteBus().getFechaBus());
+		} else
+		{
+			System.out.println("No hay coordenadas que reportar");
+		}
+		
+
+	}
 }
