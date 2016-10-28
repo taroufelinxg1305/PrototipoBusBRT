@@ -1,4 +1,4 @@
-package ServidorTCP;
+package ClasesDelSistema;
 /*   
  * Esta clase contiene la informacion del bus y del dispositivo embebido
  */

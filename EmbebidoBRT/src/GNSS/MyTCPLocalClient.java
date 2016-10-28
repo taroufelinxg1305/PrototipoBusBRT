@@ -12,8 +12,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import ServidorTCP.TCPLocalServer;
-
 public class MyTCPLocalClient implements Runnable {
 
 	private Socket clientSocket; //socket usado para la conexion con el servidor

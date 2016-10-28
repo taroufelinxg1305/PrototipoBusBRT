@@ -2,8 +2,8 @@ package EventBus;
  
 import com.google.common.eventbus.Subscribe;
 
-import ServidorTCP.Coordenadas;
-import ServidorTCP.DispBus;
+import ClasesDelSistema.Coordenadas;
+import ClasesDelSistema.DispBus;
  
 public class ParaEnvioListener {
 	private Coordenadas PECoord;

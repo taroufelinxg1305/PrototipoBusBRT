@@ -3,7 +3,7 @@
  * y devuelve la misma como un String
  */
 
-package ServidorTCP;
+package ClasesDelSistema;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;

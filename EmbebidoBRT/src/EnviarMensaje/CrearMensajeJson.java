@@ -1,12 +1,11 @@
-package ClienteREST;
+package EnviarMensaje;
 
 
 import javax.json.Json;
 import javax.json.JsonObject;
 
-import ServidorTCP.Coordenadas;
-import ServidorTCP.TCPLocalServer;
-import ServidorTCP.ThisBusCoordenadas;
+import ClasesDelSistema.Coordenadas;
+import ClasesDelSistema.ThisBusCoordenadas;
 
 public class CrearMensajeJson {
 

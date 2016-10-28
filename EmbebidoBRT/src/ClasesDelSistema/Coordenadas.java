@@ -1,4 +1,4 @@
-package ServidorTCP;
+package ClasesDelSistema;
 /**
  * Una Clase sencilla que se encarga de manejar coordenadas
  * 

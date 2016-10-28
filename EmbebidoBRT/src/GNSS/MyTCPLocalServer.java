@@ -6,10 +6,9 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ClasesDelSistema.DispBus;
+import ClasesDelSistema.ThisBusCoordenadas;
 import EventBus.EventBusClass;
-import ServidorTCP.DispBus;
-import ServidorTCP.NmeatoDatos;
-import ServidorTCP.ThisBusCoordenadas;
 
 public class MyTCPLocalServer {
 	
@@ -24,11 +23,11 @@ public class MyTCPLocalServer {
 
 	public void startTcpServer() throws IOException
 	{
-		System.out.println("no se ha conectado el server");
+		System.out.println("iniciando el server ...");
 		
 		// Define que el socket escuchara en el puerto 9091
         ServerSocket listener = new ServerSocket(9091);
-		System.out.println("ya se conecto el server");
+		System.out.println("Servidor iniciado");
 
         
         try {

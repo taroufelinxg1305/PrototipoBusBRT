@@ -6,10 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 import com.google.common.eventbus.EventBus;
 
-import ClienteTCP.TCPLocalClient;
-import ServidorTCP.Coordenadas;
-import ServidorTCP.TCPLocalServer;
-import ServidorTCP.ThisBusCoordenadas;
+import ClasesDelSistema.Coordenadas;
+import ClasesDelSistema.ThisBusCoordenadas;
 
 public class EventBusClass implements Runnable{
 	public static Coordenadas c = new Coordenadas(0, 0); 
@@ -31,7 +29,7 @@ public class EventBusClass implements Runnable{
 		eventBus.register(new ParaEnvioListener());
 		if (c != null) {
 			eventBus.post(c);
-			System.out.println(TCPLocalServer.getEsteBus().getFechaBus());
+			System.out.println("");
 		} else
 		{
 			System.out.println("No hay coordenadas que reportar");

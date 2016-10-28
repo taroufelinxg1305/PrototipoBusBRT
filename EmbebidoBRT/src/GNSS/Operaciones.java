@@ -1,4 +1,4 @@
-package ServidorTCP;
+package GNSS;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -42,28 +42,5 @@ public class Operaciones
 		 e.printStackTrace( );
 		 }
 		} 
-	/*
-	 * Metodo usado para promediar 10 coordenadas
-	 * @temp es un parametro de entrada, matriz que contiene un determinado numero de filas y dos columnas
-	 * @return un vector de dos entradas (latitud, longitud)
-	 */
-	public static double[] promedioCoor(double[][] temp)
-	{
-		double[] promVec = new double[2]; //creo el vector de salida
-		double pLat,pLon,sLat=0,sLon=0; //variables de promedios y sumas
-		int nfilas= temp.length;  //averiguo el numero de filas de temp
-		for(int i=0;i<nfilas;i++)
-		{
-			//recorro la matriz y obtengo la suma de las latitudes y la suma de las longitudes
-			sLat+=temp[i][0];
-			sLon+=temp[i][1];
-		}
-		pLat=sLat/nfilas; //prom latitud
-		pLon=sLon/nfilas; //prom longitud
-		promVec[0]=pLat;
-		promVec[1]=pLon;
-		return promVec;
-	}
-	
 	
 }
