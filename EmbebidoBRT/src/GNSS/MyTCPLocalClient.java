@@ -1,4 +1,4 @@
-package ClienteTCP;
+package GNSS;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,14 +14,14 @@ import java.util.concurrent.TimeUnit;
 
 import ServidorTCP.TCPLocalServer;
 
-public class TCPLocalClient implements Runnable {
+public class MyTCPLocalClient implements Runnable {
 
 	private Socket clientSocket; //socket usado para la conexion con el servidor
 	private PrintWriter out;
 	private int nextlinenumber = 0;  //entero usado para recorrer la colecion de lineas
 	private ArrayList<String> allLines; //colecion que almacena todas las lineas GGA nmea de un archivo predispuesto 
 
-	public TCPLocalClient() throws UnknownHostException, IOException {
+	public MyTCPLocalClient() throws UnknownHostException, IOException {
 		// Abre el cliente y se conecta al servidor en el puerto 9091
 		clientSocket = new Socket("localhost", 9091);
 		out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -48,7 +48,7 @@ public class TCPLocalClient implements Runnable {
 
 		// Programa la ejecución cada 2 segundos del hilo (servicio). La
 		// ejecuión empieza a los 5 segundos
-		executor.scheduleAtFixedRate(new TCPLocalClient(), 5, 2, TimeUnit.SECONDS);
+		executor.scheduleAtFixedRate(new MyTCPLocalClient(), 5, 2, TimeUnit.SECONDS);
 	}
 /*
  * Metodo que tomo un archivo de texto con unas lineas de contenido GGA nmea, lo carga y lo almacena en una coleccion

@@ -1,12 +1,14 @@
 package GNSS;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
 import com.google.common.eventbus.EventBus;
 
 import Comun.Sensor;
 
 public class MyGnssSensor implements Sensor {
 	
-	
+	private MyTCPLocalServer tcpServer;
 	
 
 	@Override
@@ -17,7 +19,15 @@ public class MyGnssSensor implements Sensor {
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
+		tcpServer = new MyTCPLocalServer();
+		try{
+			tcpServer.startTcpServer();
+		}
+		catch(IOException io)
+		{
+			System.out.println("problemas iniciando el Server");
+			io.printStackTrace();
+		}		
 		
 	}
 
