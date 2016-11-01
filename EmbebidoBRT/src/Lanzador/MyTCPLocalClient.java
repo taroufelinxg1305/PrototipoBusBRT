@@ -1,4 +1,4 @@
-package GNSS;
+package Lanzador;
 
 import java.io.File;
 import java.io.FileNotFoundException;

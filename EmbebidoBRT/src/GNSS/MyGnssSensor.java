@@ -2,10 +2,7 @@ package GNSS;
 
 import java.io.IOException;
 import java.net.BindException;
-
 import com.google.common.eventbus.EventBus;
-
-import ClasesDelSistema.Coordenadas;
 import Comun.Sensor;
 
 public class MyGnssSensor implements Sensor {

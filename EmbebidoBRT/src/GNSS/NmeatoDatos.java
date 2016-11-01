@@ -1,10 +1,8 @@
 package GNSS;
 
 import java.util.StringTokenizer;
-
 import ClasesDelSistema.Coordenadas;
 import ClasesDelSistema.Fecha;
-import GNSS.MyTCPLocalServer;
 
 public class NmeatoDatos {
 
@@ -42,8 +40,7 @@ public class NmeatoDatos {
 			lon = "-" + tok[4]; // si la longitud pertene al hemisferio oeste,
 								// la coordenada absoluta de longitud es
 								// negativa
-		String linea = "" +Fecha.getFechaAndTime()+ ","
-				+ MyTCPLocalServer.getEsteBus().getCodDispo() + "," + lat + "," + lon;
+		String linea = "" +Fecha.getFechaAndTime()+  "," + lat + "," + lon;
 		Operaciones.guardar(linea); // almacena un historico de los pares de
 									// coordenadas absolutas(latitud,longitud)
 		Coordenadas coord = null;

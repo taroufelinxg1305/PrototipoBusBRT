@@ -5,25 +5,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import com.google.common.eventbus.EventBus;
-
 import ClasesDelSistema.Coordenadas;
-import ClasesDelSistema.DispBus;
 
 public class MyTCPLocalServer {
 	private EventBus eb;
-	private static DispBus esteBus = new DispBus("XDB725", "B001");
 	private Coordenadas currentCoord;
 
 	public Coordenadas getCurrentCoord() {
 		return currentCoord;
 	}
-
-	public static DispBus getEsteBus() {
-		return esteBus;
-	}
-
 	public void setBus(EventBus bus) {
 		eb = bus;
 	}
