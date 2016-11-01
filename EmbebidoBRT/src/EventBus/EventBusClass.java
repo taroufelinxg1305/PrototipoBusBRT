@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.eventbus.EventBus;
 
 import ClasesDelSistema.Coordenadas;
-import ClasesDelSistema.ThisBusCoordenadas;
 
 public class EventBusClass implements Runnable{
 	public static Coordenadas c = new Coordenadas(0, 0); 

@@ -3,7 +3,7 @@ package GNSS;
 import java.util.StringTokenizer;
 
 import ClasesDelSistema.Coordenadas;
-import ClasesDelSistema.ThisBusCoordenadas;
+import ClasesDelSistema.Fecha;
 import GNSS.MyTCPLocalServer;
 
 public class NmeatoDatos {
@@ -12,12 +12,11 @@ public class NmeatoDatos {
 	 * metodo que recibe un string(GGA nmea) y de el se estraen latitud y
 	 * longitud absolutas
 	 */
-	public static void SepararToken(String s) {
+	public static Coordenadas separarTokenAndGetCoor(String s) {
 
 		// entrada=
 		// "$GPGGA,181908.00,3404.7041778,N,07044.3966270,W,4,13,1.00,495.144,M,29.200,M,0.10,0000*40";
 		String entrada = s;
-		Coordenadas coord;
 		StringTokenizer st = new StringTokenizer(entrada, ",");
 		String[] tok = new String[st.countTokens()]; // vector par almacenar
 														// cada datos separado
@@ -43,19 +42,19 @@ public class NmeatoDatos {
 			lon = "-" + tok[4]; // si la longitud pertene al hemisferio oeste,
 								// la coordenada absoluta de longitud es
 								// negativa
-		String linea = "" + MyTCPLocalServer.getEsteBus().getFechaBus() + "," + MyTCPLocalServer.getEsteBus().getCodDispo()
-				+ "," + lat + "," + lon;
+		String linea = "" +Fecha.getFechaAndTime()+ ","
+				+ MyTCPLocalServer.getEsteBus().getCodDispo() + "," + lat + "," + lon;
 		Operaciones.guardar(linea); // almacena un historico de los pares de
 									// coordenadas absolutas(latitud,longitud)
-        
-		try {
-			ThisBusCoordenadas.setLatitud(Double.parseDouble(lat));
-			ThisBusCoordenadas.setLongitud(Double.parseDouble(lon));
-
-
-		} catch (NumberFormatException nfe) {
+		Coordenadas coord = null;
+		try
+		{
+			coord = new Coordenadas(Double.parseDouble(lat), Double.parseDouble(lon));
+		} 
+		catch (NumberFormatException nfe) {
 			System.out.println("fallo la conversion de coordenada");
 		}
+		return coord ;
 
 	}
 

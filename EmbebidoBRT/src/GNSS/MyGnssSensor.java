@@ -27,7 +27,13 @@ public class MyGnssSensor implements Sensor {
 		{
 			System.out.println("problemas iniciando el Server");
 			io.printStackTrace();
-		}		
+		}	
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

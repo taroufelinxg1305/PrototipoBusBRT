@@ -7,38 +7,53 @@ package ClasesDelSistema;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class Fecha {
 
-	private String fecha;//cadena que contendra la fecha 
+	private static String fecha;// cadena que contendra la fecha
 	private static Fecha fechaClass;
-	
+
 	/**
-	 *Constructor sin parametros donde se define el formato y se construye la fecha 
+	 * Constructor sin parametros donde se define el formato y se construye la
+	 * fecha
 	 */
-	private Fecha()
-	{
+	private Fecha() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	    Date date = new Date();
-		fecha=dateFormat.format(date);
+		Date date = new Date();
+		fecha = dateFormat.format(date);
+	}
+
+	/**
+	 * Devuelve la fecha y la hora
+	 * 
+	 * @return fecha
+	 */
+	public static String getFechaAndTime() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		fecha = dateFormat.format(date);
+		return fecha;
 	}
 	
 	/**
 	 * Devuelve la fecha
+	 * 
 	 * @return fecha
 	 */
-	public String getFecha()
-	{
-		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	     Date date = new Date();
-	     fecha=dateFormat.format(date);
+	public static String getFecha() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		fecha = dateFormat.format(date);
 		return fecha;
 	}
+
 	
-	public static Fecha getFechaClass(){
-		if(fechaClass == null){
+	
+	public static Fecha getFechaClass() {
+		if (fechaClass == null) {
 			fechaClass = new Fecha();
 		}
 		return fechaClass;

@@ -5,12 +5,8 @@ package ClasesDelSistema;
 public class DispBus {
 	private String placa;
 	private String codDispo;
-	private String fechaBus="";
-	private Fecha currentDate;
+		
 	
-	public String getFechaBus() {
-		return fechaBus;
-	}
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
@@ -28,13 +24,6 @@ public class DispBus {
 	{
 		setPlaca(placa);
 		setCodDispo(codDispo);
-		currentDate= Fecha.getFechaClass();
-		actualizarHoraYFecha();
 	}
 	
-	public void actualizarHoraYFecha()
-	{
-		fechaBus =currentDate.getFecha();
-	}
-
 }

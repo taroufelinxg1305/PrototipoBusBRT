@@ -6,21 +6,20 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ClasesDelSistema.Coordenadas;
 import ClasesDelSistema.DispBus;
-import ClasesDelSistema.ThisBusCoordenadas;
-import EventBus.EventBusClass;
-
 public class MyTCPLocalServer {
 	
 	private static DispBus esteBus= new DispBus("XDB725", "B001");
+	private Coordenadas currentCoord;
+	
+	public Coordenadas getCurrentCoord() {
+		return currentCoord;
+	}
 	public static DispBus getEsteBus() {
 		return esteBus;
 	}
-	public static void actualizarBus()
-	{
-		esteBus.actualizarHoraYFecha();
-	}
-
+	
 	public void startTcpServer() throws IOException
 	{
 		System.out.println("iniciando el server ...");
@@ -48,12 +47,8 @@ public class MyTCPLocalServer {
                             break;
                         }
                      // Hace el tratamiento al texto recibido, en este caso imprimir en la consola
-                        
-                        NmeatoDatos.SepararToken(input);
-                       System.out.println(ThisBusCoordenadas.getLatitud()+"  ,"+ ThisBusCoordenadas.getLongitud());
-                       EventBusClass.c.setLatitud(ThisBusCoordenadas.getLatitud());
-                       EventBusClass.c.setLongitud(ThisBusCoordenadas.getLongitud());
-                       esteBus.actualizarHoraYFecha();
+                     currentCoord=   NmeatoDatos.separarTokenAndGetCoor(input);
+                     System.out.println(currentCoord.getLatitud()+"  ,"+ currentCoord.getLongitud());
                    
                      }
                 } finally {

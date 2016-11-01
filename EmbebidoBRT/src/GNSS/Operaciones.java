@@ -4,24 +4,29 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import ClasesDelSistema.Fecha;
 /*
  *Clase de apoyo que contiene operaciones que se necesitan en las clases
  *NmeatoJson y SampleServidor 
  */
 public class Operaciones 
 {
-	
-	String filename="";  //String que contiene la ruta del archivo usado en el metodo guardar
-	
 	/*
 	 * almacena un linea en el archivo coordenadas.txt al final del archivo cada vez que se llama
 	 * @linea es el parametro de entrada del metodo, su contenido se almacena en una nueva linea de coordenadas.txt
 	 */
 	public static void guardar(String linea)
 	{
+		String filename="";  //String que contiene la ruta del archivo usado en el metodo guardar
+		new File("coordenadasHistory").mkdir();
+
+		filename= "coordenadasHistory\\coord-" + Fecha.getFecha()+".txt";
+		
+		
 		 try
 		 {
-		    File file = new File( "coordenadas.txt" ); //archivo que contiene un historico de las coordenadas(longitud-latitud) 
+		    File file = new File( filename ); //archivo que contiene un historico de las coordenadas(longitud-latitud) 
 		    										   //de un bus
 
 		    // si no existe el archivo
