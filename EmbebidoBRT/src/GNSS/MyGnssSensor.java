@@ -1,46 +1,43 @@
 package GNSS;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
+import java.net.BindException;
+
 import com.google.common.eventbus.EventBus;
 
+import ClasesDelSistema.Coordenadas;
 import Comun.Sensor;
 
 public class MyGnssSensor implements Sensor {
-	
+
+	private EventBus thisEB;
 	private MyTCPLocalServer tcpServer;
-	
 
 	@Override
 	public void setBus(EventBus bus) {
-		// TODO Auto-generated method stub
-		
+		thisEB = bus;
 	}
 
 	@Override
 	public void start() {
 		tcpServer = new MyTCPLocalServer();
-		try{
+
+		try {
+			tcpServer.setBus(thisEB);
 			tcpServer.startTcpServer();
-		}
-		catch(IOException io)
-		{
+		} catch (BindException be) {
+			System.out.println("puerto 9091 ya esta en uso");
+		} catch (IOException io) {
 			System.out.println("problemas iniciando el Server");
 			io.printStackTrace();
-		}	
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
 	public void stop() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

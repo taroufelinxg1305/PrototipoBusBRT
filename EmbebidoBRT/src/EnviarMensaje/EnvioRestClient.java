@@ -1,4 +1,5 @@
 package EnviarMensaje;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,27 +7,11 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-import ArmarMensaje.CrearMensajeJson;
-
-public class EnviarPos implements Runnable{
-
-	public static void main(String[] args)
-	{
-		  	  
-
-		// Crea el scheduler
-		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-		
-		// Programa la ejecución cada 2 segundos del hilo (servicio). La ejecuión empieza a los 5 segundos
-		executor.scheduleAtFixedRate(new EnviarPos(), 5, 2, TimeUnit.SECONDS);
-
-	}
-	@Override
-	public void run() 
+public class EnvioRestClient {
+	
+	
+	public static void enviar(String jsonToSend)
 	{
 		try {
 
@@ -35,11 +20,7 @@ public class EnviarPos implements Runnable{
 			
 			"http://localhost:8080/cloudBRT/api/colector/buses");
 
-			//String input = CrearMensajeJson.armarJson(); 			
-			String input ="";
-			
-			System.out.println(input );
-			
+			String input =jsonToSend;
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
@@ -54,7 +35,7 @@ public class EnviarPos implements Runnable{
 			//wr.writeBytes(input);
 			//wr.flush();
 		//	wr.close();
-						if (conn.getResponseCode() != 200) {
+				if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
 			}
 
@@ -79,7 +60,6 @@ public class EnviarPos implements Runnable{
 
 		}
 		
-		
-		
 	}
+
 }

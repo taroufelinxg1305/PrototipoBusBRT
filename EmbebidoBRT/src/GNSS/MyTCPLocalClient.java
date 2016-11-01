@@ -59,6 +59,7 @@ public class MyTCPLocalClient implements Runnable {
 
 		try {
 			Scanner input = new Scanner(new File("nmea-line.txt")); //cargo el archivo de texto
+			
 			while (input.hasNextLine()) { //mientras halla una linea mas
 				str=input.nextLine();  //Cargo la siguiente linea
 				list.add(str);         //y se guarda en la colecion

@@ -1,25 +1,53 @@
 package Lanzador;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import com.google.common.eventbus.EventBus;
 
 import ArmarMensaje.CrearMensajeJson;
+import EnviarMensaje.EnviarPos;
+import EnviarMensaje.EnvioRestClient;
 import GNSS.MyGnssSensor;
 
-public class Launcher {
-	
+public class Launcher implements Runnable {
+
 	private static MyGnssSensor gpsSensor = new MyGnssSensor();
+	private static CrearMensajeJson cmj = new CrearMensajeJson();
 	private static EventBus myEventBus = new EventBus();
-	
+	private static boolean serverIsOff = true;
 
 	public static void main(String[] args) {
-		while(true)
-		{
-		gpsSensor.start();
-		System.out.println("iniciado el broker");
-		myEventBus.register(new CrearMensajeJson());
-		myEventBus.post("Enviado desde lanzador");
-		}
 
+		// Crea el scheduler
+		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
+		// Programa la ejecución cada 2 segundos del hilo (servicio). La
+		// ejecuión empieza a los 5 segundos
+		executor.scheduleAtFixedRate(new Launcher(), 5, 5, TimeUnit.SECONDS);
+
+	}
+
+	@Override
+	public void run() {
+		myEventBus.register(cmj);
+		gpsSensor.setBus(myEventBus);
+		// myEventBus.post(""+gpsSensor.getCurrentCoords().getLatitud()+","+gpsSensor.getCurrentCoords().getLongitud());
+		if (serverIsOff) {
+			serverIsOff = false;
+
+			Thread t = new Thread(new Runnable() {
+				public void run() {
+					gpsSensor.start();
+
+				}
+			});
+
+			t.start();
+		}
+		String st= cmj.armarJson();
+		if(!st.equals(""))EnvioRestClient.enviar(st);
 	}
 
 }
