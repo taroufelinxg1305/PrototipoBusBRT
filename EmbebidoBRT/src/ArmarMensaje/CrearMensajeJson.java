@@ -8,10 +8,12 @@ import com.google.common.eventbus.Subscribe;
 import ClasesDelSistema.Coordenadas;
 import ClasesDelSistema.DispBus;
 import ClasesDelSistema.Fecha;
+import OtrosSensores.Temperatura;
 
 public class CrearMensajeJson {
 	private Coordenadas coorToSend;
 	private DispBus esteDisp;
+	private Temperatura temp;
 
 	public String armarJson() {
 		String input = "";
@@ -23,7 +25,8 @@ public class CrearMensajeJson {
 					.add("Placa", esteDisp.getPlaca()).add("Tde",Fecha.getFechaAndTime())
 					.add("Coordenada", Json.createObjectBuilder().add("Latitud", "" + coorToSend.getLatitud())
 							.add("Longitud", "" + coorToSend.getLongitud())
-							.add("CodigoDispo", esteDisp.getCodDispo()))
+							.add("CodigoDispo", esteDisp.getCodDispo())
+									.add("Temperatura", temp.getTemp()))
 					.build();
 			input = Entrada.toString();
 		}
@@ -38,6 +41,10 @@ public class CrearMensajeJson {
 	@Subscribe
 	public void envDisp(DispBus dbus) {
 		esteDisp=dbus;
+	}
+	@Subscribe
+	public void envTemp(Temperatura temp) {
+		this.temp=temp;
 
 	}
 }

@@ -6,16 +6,16 @@ import Comun.Sensor;
 
 public class SensorTermometro implements Sensor{
 
-	@Override
-	public void setBus(EventBus bus) {
-		// TODO Auto-generated method stub
-		
-	}
+	private EventBus thisEB;
+	private Temperatura temperatura = new Temperatura("32 grados");
 
 	@Override
+	public void setBus(EventBus bus) {
+		thisEB=bus;
+	}
+	@Override
 	public void start() {
-		// TODO Auto-generated method stub
-		
+		thisEB.post(temperatura);
 	}
 
 	@Override

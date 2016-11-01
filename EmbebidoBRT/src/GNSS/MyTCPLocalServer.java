@@ -24,15 +24,13 @@ public class MyTCPLocalServer {
 
 		// Define que el socket escuchara en el puerto 9091
 		ServerSocket listener = new ServerSocket(9091);
-		System.out.println("Servidor iniciado");
+		System.out.println("Servidor iniciado\n");
 
 		try {
 			while (true) {
 				// Abre el socket y acepta las conexiones
 				Socket socket = listener.accept(); // verifica si la conexion
 													// fue exitosa
-				System.out.print("Server has connected!\n");
-
 				try {
 
 					BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
