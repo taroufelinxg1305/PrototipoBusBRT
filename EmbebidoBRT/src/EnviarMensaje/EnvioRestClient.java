@@ -1,5 +1,7 @@
 package EnviarMensaje;
-
+/*
+ * Cliente RestFul que consume un servicio sea local o remoto y le envia un contenido tipo json
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +12,10 @@ import java.net.URL;
 
 public class EnvioRestClient {
 	
-	
+	/*
+	 * Funcion de envio del contenido Json
+	 * @param jsonToSend Este es un String el cual se crea por el metodo toString de un jsonObject
+	 */
 	public static void enviar(String jsonToSend)
 	{
 		try {
@@ -20,7 +25,7 @@ public class EnvioRestClient {
 			
 			"http://localhost:8080/cloudBRT/api/colector/buses");
 
-			String input =jsonToSend;
+			String input =jsonToSend;  
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");

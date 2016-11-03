@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class MyTCPLocalClient {
+public class MyTCPLocalClientSensor {
 
 	private Socket clientSocket; // socket usado para la conexion con el
 									// servidor
@@ -25,7 +25,7 @@ public class MyTCPLocalClient {
 										// lineas GGA nmea de un archivo
 										// predispuesto
 
-	public MyTCPLocalClient() throws UnknownHostException, IOException {
+	public MyTCPLocalClientSensor() throws UnknownHostException, IOException {
 		// Abre el cliente y se conecta al servidor en el puerto 9091
 		clientSocket = new Socket("localhost", 9091);
 		out = new PrintWriter(clientSocket.getOutputStream(), true);

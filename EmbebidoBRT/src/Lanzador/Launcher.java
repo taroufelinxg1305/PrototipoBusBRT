@@ -1,5 +1,9 @@
 package Lanzador;
 
+/*
+ * Clase principal del sistema la cual se encarga de iniciar todos los sensores,
+ * e iniciar los procesos de armado y enviado de mensajes a la plataforma cloudBRT
+ */
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -15,14 +19,14 @@ public class Launcher implements Runnable {
 
 	private static DispBus EsteVehiculo = new DispBus("XDB725", "0001");
 	private static MyGnssSensor gpsSensor = new MyGnssSensor();
-	private static SensorTermometro myTempSensor= new SensorTermometro();
+	private static SensorTermometro myTempSensor = new SensorTermometro();
 	private static CrearMensajeJson cmj = new CrearMensajeJson();
 	private static EventBus myEventBus = new EventBus();
 	private static boolean serverIsOff = true;
-	private static boolean clientIsOff= true;
+	private static boolean clientIsOff = true;
 
 	public static void main(String[] args) {
-		
+
 		myEventBus.register(cmj);
 		gpsSensor.setBus(myEventBus);
 		myEventBus.post(EsteVehiculo);
@@ -40,7 +44,7 @@ public class Launcher implements Runnable {
 
 	@Override
 	public void run() {
-		
+
 		// myEventBus.post(""+gpsSensor.getCurrentCoords().getLatitud()+","+gpsSensor.getCurrentCoords().getLongitud());
 		if (serverIsOff) {
 			serverIsOff = false;
@@ -51,21 +55,20 @@ public class Launcher implements Runnable {
 			});
 			t.start();
 		}
-		
-		if(clientIsOff)
-		{
-			clientIsOff=false;
-			Thread t = new Thread(new Runnable() {				
-				@Override
+
+		if (clientIsOff) {
+			clientIsOff = false;
+			Thread t = new Thread(new Runnable() {
 				public void run() {
 					gpsSensor.startTcpClient();
 				}
 			});
 			t.start();
 		}
-		
-		String st= cmj.armarJson();
-		if(!st.equals(""))EnvioRestClient.enviar(st);
+
+		String st = cmj.armarJson();
+		if (!st.equals(""))
+			EnvioRestClient.enviar(st);
 	}
 
 }

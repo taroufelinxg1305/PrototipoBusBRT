@@ -11,23 +11,11 @@ import java.text.SimpleDateFormat;
 
 public class Fecha {
 
-	private static String fecha;// cadena que contendra la fecha
-	private static Fecha fechaClass;
-
-	/**
-	 * Constructor sin parametros donde se define el formato y se construye la
-	 * fecha
-	 */
-	private Fecha() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		fecha = dateFormat.format(date);
-	}
-
+	private static String fecha;// cadena que contendra la fecha 
 	/**
 	 * Devuelve la fecha y la hora
 	 * 
-	 * @return fecha
+	 * @return fecha Este es un String que esta formado por "Año/Mes/Dia Hora:Minuto:Segundo" del sistema
 	 */
 	public static String getFechaAndTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -37,9 +25,8 @@ public class Fecha {
 	}
 	
 	/**
-	 * Devuelve la fecha
-	 * 
-	 * @return fecha
+	 * Devuelve la fecha	 * 
+	 * @return fecha  Este es un String que esta formado por "Año-Mes-Dia" del sistema
 	 */
 	public static String getFecha() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -48,12 +35,4 @@ public class Fecha {
 		return fecha;
 	}
 
-	
-	
-	public static Fecha getFechaClass() {
-		if (fechaClass == null) {
-			fechaClass = new Fecha();
-		}
-		return fechaClass;
-	}
 }

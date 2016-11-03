@@ -11,7 +11,7 @@ public class MyGnssSensor implements Sensor {
 
 	private EventBus thisEB;
 	private MyTCPLocalServer tcpServer;
-	private MyTCPLocalClient tcpClient;
+	private MyTCPLocalClientArchivo tcpClient;
 
 	@Override
 	public void setBus(EventBus bus) {
@@ -35,7 +35,7 @@ public class MyGnssSensor implements Sensor {
 
 	public void startTcpClient() {
 		try {
-			tcpClient = new MyTCPLocalClient();
+			tcpClient = new MyTCPLocalClientArchivo();
 			tcpClient.startTcpClient();
 		} catch (UnknownHostException unk) {
 			unk.printStackTrace();
