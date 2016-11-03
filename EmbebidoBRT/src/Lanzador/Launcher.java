@@ -19,6 +19,7 @@ public class Launcher implements Runnable {
 	private static CrearMensajeJson cmj = new CrearMensajeJson();
 	private static EventBus myEventBus = new EventBus();
 	private static boolean serverIsOff = true;
+	private static boolean clientIsOff= true;
 
 	public static void main(String[] args) {
 		
@@ -43,16 +44,26 @@ public class Launcher implements Runnable {
 		// myEventBus.post(""+gpsSensor.getCurrentCoords().getLatitud()+","+gpsSensor.getCurrentCoords().getLongitud());
 		if (serverIsOff) {
 			serverIsOff = false;
-
 			Thread t = new Thread(new Runnable() {
 				public void run() {
 					gpsSensor.start();
-
 				}
 			});
-
 			t.start();
 		}
+		
+		if(clientIsOff)
+		{
+			clientIsOff=false;
+			Thread t = new Thread(new Runnable() {				
+				@Override
+				public void run() {
+					gpsSensor.startTcpClient();
+				}
+			});
+			t.start();
+		}
+		
 		String st= cmj.armarJson();
 		if(!st.equals(""))EnvioRestClient.enviar(st);
 	}

@@ -43,10 +43,10 @@ public class EnvioRestClient {
 					(conn.getInputStream())));
 
 			String output;
-			System.out.println("Output from Server .... \n");
+			System.out.println("\nEnviado a la plataforma CloudBRT .... ");
 			while ((output = br.readLine()) != null) {
 
-				System.out.println(output);   
+				System.out.println(output+"\n");   
 			}
 
 			conn.disconnect();

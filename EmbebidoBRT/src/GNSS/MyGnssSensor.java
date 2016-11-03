@@ -2,6 +2,8 @@ package GNSS;
 
 import java.io.IOException;
 import java.net.BindException;
+import java.net.UnknownHostException;
+
 import com.google.common.eventbus.EventBus;
 import Comun.Sensor;
 
@@ -9,6 +11,7 @@ public class MyGnssSensor implements Sensor {
 
 	private EventBus thisEB;
 	private MyTCPLocalServer tcpServer;
+	private MyTCPLocalClient tcpClient;
 
 	@Override
 	public void setBus(EventBus bus) {
@@ -27,6 +30,18 @@ public class MyGnssSensor implements Sensor {
 		} catch (IOException io) {
 			System.out.println("problemas iniciando el Server");
 			io.printStackTrace();
+		}
+	}
+
+	public void startTcpClient() {
+		try {
+			tcpClient = new MyTCPLocalClient();
+			tcpClient.startTcpClient();
+		} catch (UnknownHostException unk) {
+			unk.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

@@ -35,7 +35,7 @@ public class CrearMensajeJson {
 
 	@Subscribe
 	public void envCoordenadas(Coordenadas c) {
-		//System.out.println("coordenadas tcpserver(" + c.getLatitud() + "," + c.getLongitud() + ")");
+		System.out.println("coordenadas tcpserver(" + c.getLatitud() + "," + c.getLongitud() + ")");
 		coorToSend = c;
 	}
 	@Subscribe
