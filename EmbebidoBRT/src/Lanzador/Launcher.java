@@ -42,7 +42,6 @@ public class Launcher implements Runnable {
 
 	}
 
-	@Override
 	public void run() {
 
 		// myEventBus.post(""+gpsSensor.getCurrentCoords().getLatitud()+","+gpsSensor.getCurrentCoords().getLongitud());

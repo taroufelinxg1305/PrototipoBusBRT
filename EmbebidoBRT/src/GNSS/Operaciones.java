@@ -19,14 +19,15 @@ public class Operaciones
 	public static void guardar(String linea)
 	{
 		String filename="";  //String que contiene la ruta del archivo usado en el metodo guardar
-		new File("coordenadasHistory").mkdir();
+		File newDir=new File("coordenadasHistory");
+		newDir.mkdir();
 
-		filename= "coordenadasHistory\\coord-" + Fecha.getFecha()+".txt";
+		filename= "coord-" + Fecha.getFecha()+".txt";
 		
 		
 		 try
 		 {
-		    File file = new File( filename ); //archivo que contiene un historico de las coordenadas(longitud-latitud) 
+		    File file = new File( newDir,filename ); //archivo que contiene un historico de las coordenadas(longitud-latitud) 
 		    										   //de un bus
 
 		    // si no existe el archivo
@@ -35,7 +36,7 @@ public class Operaciones
 		        file.createNewFile( );
 		    }
 		    //fw y bw son elementos para escritura de archivos
-		    FileWriter fw = new FileWriter( file.getAbsoluteFile( ),true );
+		    FileWriter fw = new FileWriter( "coordenadasHistory/"+filename,true );
 		    BufferedWriter bw = new BufferedWriter( fw );
 		    bw.write( linea ); //guardo el string
 		    bw.newLine(); // creo un salto de linea en el archivo

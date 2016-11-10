@@ -13,12 +13,10 @@ public class MyGnssSensor implements Sensor {
 	private MyTCPLocalServer tcpServer;
 	private MyTCPLocalClientArchivo tcpClient;
 
-	@Override
 	public void setBus(EventBus bus) {
 		thisEB = bus;
 	}
 
-	@Override
 	public void start() {
 		tcpServer = new MyTCPLocalServer();
 
@@ -46,7 +44,6 @@ public class MyGnssSensor implements Sensor {
 
 	}
 
-	@Override
 	public void stop() {
 		// TODO Auto-generated method stub
 

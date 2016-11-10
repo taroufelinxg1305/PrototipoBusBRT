@@ -21,8 +21,7 @@ public class EnvioRestClient {
 		try {
 
 			URL url = new URL(
-					//"http://localhost:8080/rutasBuses-1/apirutas/ubicacion/envioWilson");
-			
+			//"http://192.168.0.14:8080/cloudBRT/api/colector/buses");
 			"http://localhost:8080/cloudBRT/api/colector/buses");
 
 			String input =jsonToSend;  
