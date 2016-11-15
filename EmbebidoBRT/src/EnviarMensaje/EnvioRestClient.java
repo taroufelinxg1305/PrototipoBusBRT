@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -72,7 +73,11 @@ public class EnvioRestClient implements Runnable{
 		} catch (MalformedURLException e) {
 
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch(ConnectException conn)
+		{
+			System.out.println("El servidor apache esta fuera de alcance o no esta encendido");
+		}
+		catch (IOException e) {
 
 			e.printStackTrace();
 
