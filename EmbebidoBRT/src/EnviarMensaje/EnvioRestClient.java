@@ -14,7 +14,13 @@ import ArmarMensaje.CrearMensajeJson;
 
 public class EnvioRestClient implements Runnable{
 	CrearMensajeJson cmj;
+	private String uri;
 	
+	public EnvioRestClient(String uriServicio) {
+		uri=uriServicio;
+
+	}
+
 	public void setArmarMensaje( CrearMensajeJson mj)
 	{
 		cmj=mj;
@@ -28,9 +34,9 @@ public class EnvioRestClient implements Runnable{
 	{
 		try {
 
-			URL url = new URL(
+			URL url = new URL(uri);
 			//"http://192.168.0.14:8080/cloudBRT/api/colector/buses");
-			"http://localhost:8080/cloudBRT/api/colector/buses");
+			//"http://localhost:8080/cloudBRT/api/colector/buses");
 
 			String input =jsonToSend;  
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();

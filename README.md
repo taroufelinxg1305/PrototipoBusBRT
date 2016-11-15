@@ -6,3 +6,5 @@
 -->noviembre 2, hay dos ejecutables, Launcher y MyTcpLocalClient el cual esta separado la funcionalidad para obtener los datos del sensor o simularlos y se conecta a la aplicacion principal atravez de un socket
 
 -->noviembre 3, La actual aplicacion nesecita tener la web-aps CloudBRT en el servidor Tomcat, tener activo el servidor, y encender el servicio mongoDB, bajo esas condiciones la aplicacion funciona ejecutando el Launcher
+
+-->noviembre 14, la aplicacion cuenta con dos posibles salidas, el envio de mensajes a la plataforma cloudBRT y un almacenamiento interno de mensajes en el modulo de persistencia

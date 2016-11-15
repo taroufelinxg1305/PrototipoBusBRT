@@ -8,12 +8,12 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import com.google.common.eventbus.Subscribe;
 import ClasesDelSistema.Coordenadas;
-import ClasesDelSistema.DispBus;
+import ClasesDelSistema.Propiedades;
 import ClasesDelSistema.Fecha;
 import OtrosSensores.Temperatura;
 
 public class CrearMensajeJson {
-	private DispBus esteDisp;   //Almacena los datos del vehiculo y dispositivo
+	private Propiedades esteDisp;   //Almacena los datos del vehiculo y dispositivo
 	private Coordenadas coorToSend;	//Contine la ultima coordenada recibida
 	private Temperatura temp;	//contine una constante que simula el funcionamiento de un senson adicional
 	
@@ -51,7 +51,7 @@ public class CrearMensajeJson {
 	 * @param dbus Este es el DispBus, enviado desde el launcher
 	 */
 	@Subscribe
-	public void envDisp(DispBus dbus) {
+	public void envDisp(Propiedades dbus) {
 		esteDisp = dbus;
 	}
 

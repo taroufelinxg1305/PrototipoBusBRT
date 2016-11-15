@@ -9,7 +9,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import com.google.common.eventbus.EventBus;
 import ArmarMensaje.CrearMensajeJson;
-import ClasesDelSistema.DispBus;
+import ClasesDelSistema.Propiedades;
 import Comun.Sensor;
 import EnviarMensaje.EnvioRestClient;
 import GNSS.MyGnssSensor;
@@ -18,11 +18,11 @@ import Persistencia.GuardarMensajes;
 
 public class Launcher {
 
-	private static DispBus EsteVehiculo = new DispBus("XDB725", "0001");
-	private static MyGnssSensor gpsSensor = new MyGnssSensor();
+	private static Propiedades EsteVehiculoProperties = new Propiedades();
+	private static MyGnssSensor gpsSensor = new MyGnssSensor(EsteVehiculoProperties.getPtoTCP());
 	private static SensorTermometro myTempSensor = new SensorTermometro();
 	private static CrearMensajeJson cmj = new CrearMensajeJson();
-	private static EnvioRestClient erc = new EnvioRestClient();
+	private static EnvioRestClient erc = new EnvioRestClient(EsteVehiculoProperties.getUriServicio());
 	private static GuardarMensajes gm = new GuardarMensajes();
 	private static EventBus myEventBus = new EventBus();
 
@@ -30,7 +30,8 @@ public class Launcher {
 
 		myEventBus.register(cmj);
 		gpsSensor.setBus(myEventBus);
-		myEventBus.post(EsteVehiculo);
+		//System.out.println(EsteVehiculoProperties.getPlaca()+","+EsteVehiculoProperties.getCodDispo()+","+EsteVehiculoProperties.getUriServicio()+","+EsteVehiculoProperties.getPtoTCP());
+		myEventBus.post(EsteVehiculoProperties);
 		myTempSensor.setBus(myEventBus);
 		myTempSensor.start();
 

@@ -11,7 +11,11 @@ import ClasesDelSistema.Coordenadas;
 public class MyTCPLocalServer {
 	private EventBus eb;
 	private Coordenadas currentCoord;
+	private int puertoTCP;
 
+	public MyTCPLocalServer(int puerto) {
+		puertoTCP= puerto;
+	}
 	public Coordenadas getCurrentCoord() {
 		return currentCoord;
 	}
@@ -22,8 +26,8 @@ public class MyTCPLocalServer {
 	public void startTcpServer() throws IOException {
 		System.out.println("iniciando el server ...");
 
-		// Define que el socket escuchara en el puerto 9091
-		ServerSocket listener = new ServerSocket(9091);
+		// Define que el socket escuchara en el puerto que esta disponible para comunicacion TCP
+		ServerSocket listener = new ServerSocket(puertoTCP);
 		System.out.println("Servidor iniciado\n");
 
 		try {

@@ -12,19 +12,24 @@ public class MyGnssSensor implements Sensor {
 	private EventBus thisEB;
 	private MyTCPLocalServer tcpServer;
 	private MyTCPLocalClientArchivo tcpClient;
+	private int puerto;
+
+	public MyGnssSensor(int port) {
+		puerto= port;
+	}
 
 	public void setBus(EventBus bus) {
 		thisEB = bus;
 	}
 
 	public void start() {
-		tcpServer = new MyTCPLocalServer();
+		tcpServer = new MyTCPLocalServer(puerto);
 
 		try {
 			tcpServer.setBus(thisEB);
 			tcpServer.startTcpServer();
 		} catch (BindException be) {
-			System.out.println("puerto 9091 ya esta en uso");
+			System.out.println("El puerto "+puerto+" ya esta en uso");
 		} catch (IOException io) {
 			System.out.println("problemas iniciando el Server");
 			io.printStackTrace();

@@ -1,4 +1,0 @@
-placa:
-codigo:
-uri:
-puertoTcp:
