@@ -1,4 +1,4 @@
-package GNSS;
+package Persistencia;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,8 +7,7 @@ import java.io.IOException;
 
 import ClasesDelSistema.Fecha;
 /*
- *Clase de apoyo que contiene operaciones que se necesitan en las clases
- *NmeatoJson y SampleServidor 
+ *Clase de apoyo que contiene operaciones que se necesitan en la clase GuardarMensajes 
  */
 public class Operaciones 
 {
@@ -27,8 +26,7 @@ public class Operaciones
 		
 		 try
 		 {
-		    File file = new File( newDir,filename ); //archivo que contiene un historico de las coordenadas(longitud-latitud) 
-		    										   //de un bus
+		    File file = new File( newDir,filename ); //archivo que contiene un historico de las mensajes    										   //de un bus
 
 		    // si no existe el archivo
 		    if ( ! file.exists( ) )

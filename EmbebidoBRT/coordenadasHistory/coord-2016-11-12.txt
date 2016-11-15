@@ -1,0 +1,11 @@
+{"Placa":"XDB725","Tde":"2016/11/12 14:55:49","Coordenada":{"Latitud":"3554.897","Longitud":"-7602.494","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:55:54","Coordenada":{"Latitud":"3554.887","Longitud":"-7602.491","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:55:59","Coordenada":{"Latitud":"3554.88","Longitud":"-7602.489","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:56:04","Coordenada":{"Latitud":"3554.869","Longitud":"-7602.49","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:56:09","Coordenada":{"Latitud":"3554.862","Longitud":"-7602.489","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:56:14","Coordenada":{"Latitud":"3554.851","Longitud":"-7602.49","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:56:19","Coordenada":{"Latitud":"3554.844","Longitud":"-7602.491","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:56:24","Coordenada":{"Latitud":"3554.834","Longitud":"-7602.496","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:56:29","Coordenada":{"Latitud":"3554.828","Longitud":"-7602.499","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:56:34","Coordenada":{"Latitud":"3554.819","Longitud":"-7602.504","CodigoDispo":"0001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2016/11/12 14:56:39","Coordenada":{"Latitud":"3554.812","Longitud":"-7602.507","CodigoDispo":"0001","Temperatura":"32 grados"}}

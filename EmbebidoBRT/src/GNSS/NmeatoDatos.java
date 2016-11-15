@@ -40,18 +40,13 @@ public class NmeatoDatos {
 			lon = "-" + tok[4]; // si la longitud pertene al hemisferio oeste,
 								// la coordenada absoluta de longitud es
 								// negativa
-		String linea = "" +Fecha.getFechaAndTime()+  "," + lat + "," + lon;
-		Operaciones.guardar(linea); // almacena un historico de los pares de
-									// coordenadas absolutas(latitud,longitud)
 		Coordenadas coord = null;
-		try
-		{
+		try {
 			coord = new Coordenadas(Double.parseDouble(lat), Double.parseDouble(lon));
-		} 
-		catch (NumberFormatException nfe) {
+		} catch (NumberFormatException nfe) {
 			System.out.println("fallo la conversion de coordenada");
 		}
-		return coord ;
+		return coord;
 
 	}
 

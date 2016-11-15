@@ -14,16 +14,17 @@ import Comun.Sensor;
 import EnviarMensaje.EnvioRestClient;
 import GNSS.MyGnssSensor;
 import OtrosSensores.SensorTermometro;
+import Persistencia.GuardarMensajes;
 
-public class Launcher implements Runnable {
+public class Launcher {
 
 	private static DispBus EsteVehiculo = new DispBus("XDB725", "0001");
 	private static MyGnssSensor gpsSensor = new MyGnssSensor();
 	private static SensorTermometro myTempSensor = new SensorTermometro();
 	private static CrearMensajeJson cmj = new CrearMensajeJson();
+	private static EnvioRestClient erc = new EnvioRestClient();
+	private static GuardarMensajes gm = new GuardarMensajes();
 	private static EventBus myEventBus = new EventBus();
-	private static boolean serverIsOff = true;
-	private static boolean clientIsOff = true;
 
 	public static void main(String[] args) {
 
@@ -33,41 +34,34 @@ public class Launcher implements Runnable {
 		myTempSensor.setBus(myEventBus);
 		myTempSensor.start();
 
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				gpsSensor.start();
+			}
+		});
+		t.start();
+
+		Thread t2 = new Thread(new Runnable() {
+			public void run() {
+				gpsSensor.startTcpClient();
+			}
+		});
+		t2.start();
+
+		erc.setArmarMensaje(cmj);
+		gm.setArmarMensaje(cmj);
+
 		// Crea el scheduler
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-
+		// Programa la ejecución cada 2 segundos del hilo (servicio). La
+		// ejecuión empieza a los 3 segundos
+		executor.scheduleAtFixedRate(erc, 3, 5, TimeUnit.SECONDS);
+		// Crea el scheduler
+		ScheduledExecutorService executor2 = Executors.newScheduledThreadPool(1);
 		// Programa la ejecución cada 2 segundos del hilo (servicio). La
 		// ejecuión empieza a los 5 segundos
-		executor.scheduleAtFixedRate(new Launcher(), 5, 5, TimeUnit.SECONDS);
+		executor2.scheduleAtFixedRate(gm, 5, 5, TimeUnit.SECONDS);
 
-	}
-
-	public void run() {
-
-		// myEventBus.post(""+gpsSensor.getCurrentCoords().getLatitud()+","+gpsSensor.getCurrentCoords().getLongitud());
-		if (serverIsOff) {
-			serverIsOff = false;
-			Thread t = new Thread(new Runnable() {
-				public void run() {
-					gpsSensor.start();
-				}
-			});
-			t.start();
-		}
-
-		if (clientIsOff) {
-			clientIsOff = false;
-			Thread t = new Thread(new Runnable() {
-				public void run() {
-					gpsSensor.startTcpClient();
-				}
-			});
-			t.start();
-		}
-
-		String st = cmj.armarJson();
-		if (!st.equals(""))
-			EnvioRestClient.enviar(st);
 	}
 
 }

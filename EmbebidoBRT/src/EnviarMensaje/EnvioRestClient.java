@@ -10,13 +10,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class EnvioRestClient {
+import ArmarMensaje.CrearMensajeJson;
+
+public class EnvioRestClient implements Runnable{
+	CrearMensajeJson cmj;
+	
+	public void setArmarMensaje( CrearMensajeJson mj)
+	{
+		cmj=mj;
+	}
 	
 	/*
 	 * Funcion de envio del contenido Json
 	 * @param jsonToSend Este es un String el cual se crea por el metodo toString de un jsonObject
 	 */
-	public static void enviar(String jsonToSend)
+	public void enviar(String jsonToSend)
 	{
 		try {
 
@@ -62,6 +70,19 @@ public class EnvioRestClient {
 
 			e.printStackTrace();
 
+		}
+		
+	}
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
+		if(cmj!=null)
+		{
+			String st=cmj.armarJson();
+			if (!st.equals(""))
+			enviar(st);
+		
 		}
 		
 	}
