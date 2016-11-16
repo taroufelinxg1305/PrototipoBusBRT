@@ -48,7 +48,7 @@ public class MyTCPLocalServer {
 						// Hace el tratamiento al texto recibido, en este caso
 						// imprimir en la consola
 						currentCoord = NmeatoDatos.separarTokenAndGetCoor(input);
-						eb.post(currentCoord);
+						if(currentCoord!=null)eb.post(currentCoord);
 					}
 				} finally {
 					socket.close();

@@ -42,13 +42,6 @@ public class Launcher {
 		});
 		t.start();
 
-		Thread t2 = new Thread(new Runnable() {
-			public void run() {
-				gpsSensor.startTcpClient();
-			}
-		});
-		t2.start();
-
 		erc.setArmarMensaje(cmj);
 		gm.setArmarMensaje(cmj);
 
@@ -56,12 +49,12 @@ public class Launcher {
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 		// Programa la ejecución cada 2 segundos del hilo (servicio). La
 		// ejecuión empieza a los 3 segundos
-		executor.scheduleAtFixedRate(erc, 3, 5, TimeUnit.SECONDS);
+		executor.scheduleAtFixedRate(erc, 2, 5, TimeUnit.SECONDS);
 		// Crea el scheduler
 		ScheduledExecutorService executor2 = Executors.newScheduledThreadPool(1);
 		// Programa la ejecución cada 2 segundos del hilo (servicio). La
 		// ejecuión empieza a los 5 segundos
-		executor2.scheduleAtFixedRate(gm, 5, 5, TimeUnit.SECONDS);
+		executor2.scheduleAtFixedRate(gm, 2, 5, TimeUnit.SECONDS);
 
 	}
 

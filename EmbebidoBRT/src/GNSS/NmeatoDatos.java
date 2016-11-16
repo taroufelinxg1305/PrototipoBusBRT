@@ -27,27 +27,40 @@ public class NmeatoDatos {
 			tok[cont] = st.nextToken();
 			cont++;
 		}
-		String lat = "", lon = ""; // en base a tok[2] y tok[3] lleno lat, en
-									// base a tok[4] y tok[5] lleno lon
-		if (tok[3].equals("N"))
-			lat = tok[2];
-		else if (tok[3].equals("S"))
-			lat = "-" + tok[2]; // si la latitud pertenece al hemisferio sur, la
-								// coordenada absoluta de latitud es negatica
-		if (tok[5].equals("E"))
-			lon = tok[4];
-		else if (tok[5].equals("W"))
-			lon = "-" + tok[4]; // si la longitud pertene al hemisferio oeste,
-								// la coordenada absoluta de longitud es
-								// negativa
 		Coordenadas coord = null;
-		try {
-			coord = new Coordenadas(Double.parseDouble(lat), Double.parseDouble(lon));
-		} catch (NumberFormatException nfe) {
-			System.out.println("fallo la conversion de coordenada");
+		if (isGgaLine(tok[0])) {
+			String lat = "", lon = ""; // en base a tok[2] y tok[3] lleno lat,
+										// en
+			// base a tok[4] y tok[5] lleno lon
+			if (tok[3].equals("N"))
+				lat = tok[2];
+			else if (tok[3].equals("S"))
+				lat = "-" + tok[2]; // si la latitud pertenece al hemisferio
+									// sur, la
+									// coordenada absoluta de latitud es
+									// negatica
+			if (tok[5].equals("E"))
+				lon = tok[4];
+			else if (tok[5].equals("W"))
+				lon = "-" + tok[4]; // si la longitud pertene al hemisferio
+									// oeste,
+									// la coordenada absoluta de longitud es
+									// negativa
+			try {
+				coord = new Coordenadas(Double.parseDouble(lat), Double.parseDouble(lon));
+			} catch (NumberFormatException nfe) {
+				System.out.println("fallo la conversion de coordenada");
+			}
 		}
 		return coord;
 
+	}
+
+	public static boolean isGgaLine(String descriptor) {
+		boolean isGga = false;
+		if (descriptor.equals("$GPGGA"))
+			isGga = true;
+		return isGga;
 	}
 
 }
