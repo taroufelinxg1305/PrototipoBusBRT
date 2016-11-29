@@ -9,6 +9,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import com.google.common.eventbus.EventBus;
 import ArmarMensaje.CrearMensajeJson;
+import ClasesDelSistema.Fecha;
 import ClasesDelSistema.Propiedades;
 import Comun.Sensor;
 import EnviarMensaje.EnvioRestClient;
@@ -28,6 +29,7 @@ public class Launcher {
 
 	public static void main(String[] args) {
 
+		Fecha.getFechaAndTime();
 		myEventBus.register(cmj);
 		gpsSensor.setBus(myEventBus);
 		//System.out.println(EsteVehiculoProperties.getPlaca()+","+EsteVehiculoProperties.getCodDispo()+","+EsteVehiculoProperties.getUriServicio()+","+EsteVehiculoProperties.getPtoTCP());
