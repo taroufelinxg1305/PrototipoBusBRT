@@ -11,7 +11,6 @@ public class MyGnssSensor implements Sensor {
 
 	private EventBus thisEB;
 	private MyTCPLocalServer tcpServer;
-	private MyTCPLocalClientArchivo tcpClient;
 	private int puerto;
 
 	public MyGnssSensor(int port) {
@@ -34,19 +33,6 @@ public class MyGnssSensor implements Sensor {
 			System.out.println("problemas iniciando el Server");
 			io.printStackTrace();
 		}
-	}
-
-	public void startTcpClient() {
-		try {
-			tcpClient = new MyTCPLocalClientArchivo();
-			tcpClient.startTcpClient();
-		} catch (UnknownHostException unk) {
-			unk.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	public void stop() {

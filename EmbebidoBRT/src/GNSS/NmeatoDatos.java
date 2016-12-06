@@ -29,28 +29,28 @@ public class NmeatoDatos {
 		}
 		Coordenadas coord = null;
 		if (isGgaLine(tok[0])) {
-			String lat = "", lon = ""; // en base a tok[2] y tok[3] lleno lat,
-										// en
-			// base a tok[4] y tok[5] lleno lon
+			double lat = 0, lon = 0; // en base a tok[2] y tok[3] lleno lat,
+										// en base a tok[4] y tok[5] lleno lon
+
 			if (tok[3].equals("N"))
-				lat = tok[2];
+				lat = degMinSecToDec(tok[2]);
 			else if (tok[3].equals("S"))
-				lat = "-" + tok[2]; // si la latitud pertenece al hemisferio
-									// sur, la
-									// coordenada absoluta de latitud es
-									// negatica
+				lat = (-1) * degMinSecToDec(tok[2]); // si la latitud pertenece
+														// al hemisferio
+			// sur, la
+			// coordenada absoluta de latitud es
+			// negatica
 			if (tok[5].equals("E"))
-				lon = tok[4];
+				lon = degMinSecToDec(tok[4]);
 			else if (tok[5].equals("W"))
-				lon = "-" + tok[4]; // si la longitud pertene al hemisferio
-									// oeste,
-									// la coordenada absoluta de longitud es
-									// negativa
-			try {
-				coord = new Coordenadas(Double.parseDouble(lat), Double.parseDouble(lon));
-			} catch (NumberFormatException nfe) {
-				System.out.println("fallo la conversion de coordenada");
-			}
+				lon = (-1) * degMinSecToDec(tok[4]);
+			; // si la longitud pertene al hemisferio
+			// oeste,
+			// la coordenada absoluta de longitud es
+			// negativa
+
+			coord = new Coordenadas(lat, lon);
+
 		}
 		return coord;
 
@@ -61,6 +61,35 @@ public class NmeatoDatos {
 		if (descriptor.equals("$GPGGA"))
 			isGga = true;
 		return isGga;
+	}
+
+	public static double degMinSecToDec(String dms) {
+		double deg, min, sec, dec = 0;
+		int index = dms.indexOf('.');
+		if (index >= 4) {
+			try {
+				deg = Double.parseDouble(dms.substring(0, index - 2));
+				min = Double.parseDouble(dms.substring(index - 2, index));
+				sec = Double.parseDouble(dms.substring(index + 1)) / 100;
+				dec = deg + (min / 60) + (sec / 3600);
+				return dec;
+			} catch (NumberFormatException nfe) {
+				System.out.println("fallo la conversion de coordenada");
+				return dec;
+			}
+		}
+
+		else {
+			try {
+				dec = Double.parseDouble(dms);
+				System.out.println(dec);
+				return dec;
+			} catch (NumberFormatException nfe) {
+				System.out.println("fallo la conversion de coordenada");
+				return dec;
+			}
+
+		}
 	}
 
 }

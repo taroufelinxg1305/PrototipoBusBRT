@@ -14,6 +14,7 @@ import ClasesDelSistema.Propiedades;
 import Comun.Sensor;
 import EnviarMensaje.EnvioRestClient;
 import GNSS.MyGnssSensor;
+import GNSS.NmeatoDatos;
 import OtrosSensores.SensorTermometro;
 import Persistencia.GuardarMensajes;
 
@@ -29,7 +30,6 @@ public class Launcher {
 
 	public static void main(String[] args) {
 
-		Fecha.getFechaAndTime();
 		myEventBus.register(cmj);
 		gpsSensor.setBus(myEventBus);
 		//System.out.println(EsteVehiculoProperties.getPlaca()+","+EsteVehiculoProperties.getCodDispo()+","+EsteVehiculoProperties.getUriServicio()+","+EsteVehiculoProperties.getPtoTCP());
@@ -43,7 +43,6 @@ public class Launcher {
 			}
 		});
 		t.start();
-
 		erc.setArmarMensaje(cmj);
 		gm.setArmarMensaje(cmj);
 

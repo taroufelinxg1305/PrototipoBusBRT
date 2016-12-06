@@ -24,7 +24,6 @@ public class Fecha {
 		dateFormat.setTimeZone(TimeZone.getTimeZone("America/Bogota"));
 		Date date = new Date();
 		fecha = dateFormat.format(date);
-		System.out.println(fecha);
 		return fecha;
 	}
 	
