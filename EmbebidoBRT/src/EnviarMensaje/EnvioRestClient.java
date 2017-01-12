@@ -1,8 +1,5 @@
 package EnviarMensaje;
 
-/*
- * Cliente RestFul que consume un servicio sea local o remoto y le envia un contenido tipo json
- */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,17 +9,25 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.json.JsonString;
-import javax.json.JsonValue;
-import javax.json.stream.JsonParser;
 
 import ArmarMensaje.CrearMensajeJson;
 
+/**
+ * Cliente RestFul que consume un servicio sea local o remoto y le envia un
+ * contenido tipo JSON
+ * 
+ * @author
+ *
+ */
 public class EnvioRestClient implements Runnable {
+
 	CrearMensajeJson cmj;
 	private String uri;
 	private static boolean recTerminado = false;
@@ -41,10 +46,11 @@ public class EnvioRestClient implements Runnable {
 
 	}
 
-	public void setArmarMensaje(CrearMensajeJson mj) {
+	public void setProductorMensaje(CrearMensajeJson mj) {
 		cmj = mj;
 	}
-		/*
+
+	/*
 	 * Funcion de envio del contenido Json
 	 * 
 	 * @param jsonToSend Este es un String el cual se crea por el metodo
@@ -66,22 +72,25 @@ public class EnvioRestClient implements Runnable {
 			os.write(input.getBytes());
 			os.flush();
 			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ conn.getResponseCode());
 			}
 
-			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
 
 			String output;
 			while ((output = br.readLine()) != null) {
 
 				System.out.println(output + "\n");
 
-				JsonReader jsonReader = Json.createReader(new StringReader(output));
+				JsonReader jsonReader = Json.createReader(new StringReader(
+						output));
 				JsonObject respuesta = jsonReader.readObject();
 				jsonReader.close();
-				proxpar  = respuesta.getInt("ProximaParada");				
-				recTerminado= respuesta.getBoolean("Terminado");
-			
+				proxpar = respuesta.getInt("ProximaParada");
+				recTerminado = respuesta.getBoolean("Terminado");
+
 			}
 
 			conn.disconnect();
@@ -90,7 +99,8 @@ public class EnvioRestClient implements Runnable {
 
 			e.printStackTrace();
 		} catch (ConnectException conn) {
-			System.out.println("El servidor apache esta fuera de alcance o no esta encendido");
+			System.out
+					.println("El servidor apache esta fuera de alcance o no esta encendido");
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -100,7 +110,7 @@ public class EnvioRestClient implements Runnable {
 
 	public void run() {
 		// TODO Auto-generated method stub
-    
+
 		if (cmj != null) {
 
 			String st = cmj.armarJson();
@@ -109,7 +119,18 @@ public class EnvioRestClient implements Runnable {
 				enviar(st);
 
 		}
+	}
 
+	/**
+	 * Este método se invoca para iniciar el envío de los datos a través del API
+	 * REST del servicio Cloud
+	 */
+	public void start() {
+		// Crea el scheduler
+		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+		// Programa la ejecución cada 2 segundos del hilo (servicio).		
+		// La ejecuión empieza a los 3 segundos
+		executor.scheduleAtFixedRate(this, 2, 5, TimeUnit.SECONDS);
 	}
 
 }

@@ -8,7 +8,8 @@ import java.net.Socket;
 import com.google.common.eventbus.EventBus;
 import ClasesDelSistema.Coordenadas;
 
-public class MyTCPLocalServer {
+public class MyTCPLocalServer implements Runnable {
+	
 	private EventBus eb;
 	private Coordenadas currentCoord;
 	private int puertoTCP;
@@ -57,6 +58,15 @@ public class MyTCPLocalServer {
 		} finally {
 			listener.close();
 		}
+	}
+	
+	public void run() {
+		try {
+			startTcpServer();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
