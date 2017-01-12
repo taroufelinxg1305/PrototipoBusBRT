@@ -44,7 +44,7 @@ public class NmeatoDatos {
 				lon = degMinSecToDec(tok[4]);
 			else if (tok[5].equals("W"))
 				lon = (-1) * degMinSecToDec(tok[4]);
-			; // si la longitud pertene al hemisferio
+			// si la longitud pertene al hemisferio
 			// oeste,
 			// la coordenada absoluta de longitud es
 			// negativa
@@ -82,7 +82,6 @@ public class NmeatoDatos {
 		else {
 			try {
 				dec = Double.parseDouble(dms);
-				System.out.println(dec);
 				return dec;
 			} catch (NumberFormatException nfe) {
 				System.out.println("fallo la conversion de coordenada");

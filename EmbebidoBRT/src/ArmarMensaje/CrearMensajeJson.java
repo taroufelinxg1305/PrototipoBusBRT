@@ -9,37 +9,53 @@ import javax.json.JsonObject;
 import com.google.common.eventbus.Subscribe;
 import ClasesDelSistema.Coordenadas;
 import ClasesDelSistema.Propiedades;
+import EnviarMensaje.EnvioRestClient;
 import ClasesDelSistema.Fecha;
 import OtrosSensores.Temperatura;
 
 public class CrearMensajeJson {
-	private Propiedades esteDisp;   //Almacena los datos del vehiculo y dispositivo
-	private Coordenadas coorToSend;	//Contine la ultima coordenada recibida
-	private Temperatura temp;	//contine una constante que simula el funcionamiento de un senson adicional
-	
+	private Propiedades esteDisp; // Almacena los datos del vehiculo y
+									// dispositivo
+	private Coordenadas coorToSend; // Contine la ultima coordenada recibida
+	private Temperatura temp; // contine una constante que simula el
+								// funcionamiento de un senson adicional
+	private int proximaParada = 1; // contiene un entero que representa la
+									// siguiente
+									// parada de la ruta, es de utilidad para la
+									// plataforma cloud
 	/*
-	 *Metodo encargado de generar un String apartir de un JsonObject armado con la informacion del sistema 
+	 * Metodo encargado de generar un String apartir de un JsonObject armado con
+	 * la informacion del sistema
 	 */
-	public String armarJson() {
-		String input = "";
-		if (coorToSend != null) {
 
-			JsonObject Entrada = Json.createObjectBuilder().add("Placa", esteDisp.getPlaca())
-					.add("Tde", Fecha.getFechaAndTime())
-					.add("Coordenada",
-							Json.createObjectBuilder().add("Latitud", "" + coorToSend.getLatitud())
-									.add("Longitud", "" + coorToSend.getLongitud())
-									.add("CodigoDispo", esteDisp.getCodDispo()).add("Temperatura", temp.getTemp()))
-					.build();
-			input = Entrada.toString();
+	public String armarJson() {
+		if (!EnvioRestClient.isRecTerminado()) {
+			String input = "";
+			proximaParada = EnvioRestClient.getProxpar();
+			if (coorToSend != null) {
+
+				JsonObject Entrada = Json.createObjectBuilder().add("Placa", esteDisp.getPlaca())
+						.add("Tde", Fecha.getFechaAndTime()).add("ProximaParada", proximaParada)
+						.add("Coordenada",
+								Json.createObjectBuilder().add("Latitud", "" + coorToSend.getLatitud())
+										.add("Longitud", "" + coorToSend.getLongitud())
+										.add("CodigoDispo", esteDisp.getCodDispo()).add("Temperatura", temp.getTemp()))
+						.build();
+				input = Entrada.toString();
+			}
+			return input;
+		} else {
+			System.out.println("El recorrido ha terminado");
+			return null;
 		}
-		return input;
 	}
-	
+
 	/*
-	 * Metodo que se activa cuando el eventBus usa el metodo post con una Coordenada de parametro
+	 * Metodo que se activa cuando el eventBus usa el metodo post con una
+	 * Coordenada de parametro
+	 * 
 	 * @param c Esta es la Coordenadas, enviada desde tcpServer
-	 */	
+	 */
 	@Subscribe
 	public void envCoordenadas(Coordenadas c) {
 		System.out.println("coordenadas tcpserver(" + c.getLatitud() + "," + c.getLongitud() + ")");
@@ -47,7 +63,9 @@ public class CrearMensajeJson {
 	}
 
 	/*
-	 * Metodo que se activa cuando el eventBus usa el metodo post con un DispBus de parametro
+	 * Metodo que se activa cuando el eventBus usa el metodo post con un DispBus
+	 * de parametro
+	 * 
 	 * @param dbus Este es el DispBus, enviado desde el launcher
 	 */
 	@Subscribe
@@ -56,12 +74,22 @@ public class CrearMensajeJson {
 	}
 
 	/*
-	 * Metodo que se activa cuando el eventBus usa el metodo post con una Temperatura de parametro
+	 * Metodo que se activa cuando el eventBus usa el metodo post con una
+	 * Temperatura de parametro
+	 * 
 	 * @param temp Esta es la Temperatura, enviada desde tcpServer
 	 */
 	@Subscribe
 	public void envTemp(Temperatura temp) {
 		this.temp = temp;
 
+	}
+
+	/*
+	 * metodo que actualiza el atributo proxima parada, se usara en el objeto
+	 * que que envia el mensaje
+	 */
+	public void setProxParada(int pp) {
+		this.proximaParada = pp;
 	}
 }
