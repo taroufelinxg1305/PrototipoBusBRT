@@ -1,8 +1,8 @@
 package GNSS;
 
 import java.util.StringTokenizer;
+
 import ClasesDelSistema.Coordenadas;
-import ClasesDelSistema.Fecha;
 
 public class NmeatoDatos {
 

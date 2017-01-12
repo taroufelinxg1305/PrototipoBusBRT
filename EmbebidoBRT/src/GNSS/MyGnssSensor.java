@@ -6,7 +6,7 @@ import com.google.common.eventbus.EventBus;
 
 public class MyGnssSensor implements Sensor {
 
-	private EventBus thisEB;
+	private EventBus eventBus;
 	private MyTCPLocalServer tcpServer;
 	private int puerto;
 
@@ -15,12 +15,12 @@ public class MyGnssSensor implements Sensor {
 	}
 
 	public void setBus(EventBus bus) {
-		thisEB = bus;
+		eventBus = bus;
 	}
 
 	public void start() {
 		tcpServer = new MyTCPLocalServer(puerto);
-		tcpServer.setBus(thisEB);
+		tcpServer.setBus(eventBus);
 		
 		Thread thrTCPServer = new Thread(tcpServer);
 		thrTCPServer.start();

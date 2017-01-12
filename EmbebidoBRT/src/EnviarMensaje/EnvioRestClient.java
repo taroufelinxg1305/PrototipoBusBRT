@@ -57,6 +57,11 @@ public class EnvioRestClient implements Runnable {
 	 * toString de un jsonObject
 	 */
 	public void enviar(String jsonToSend) {
+		
+		System.out.println("----- Intentando enviar el siguiente mensaje ----");
+		System.out.println(jsonToSend);
+		System.out.println("-------------------------------------------------");
+		
 		try {
 
 			URL url = new URL(uri);
@@ -114,7 +119,7 @@ public class EnvioRestClient implements Runnable {
 		if (cmj != null) {
 
 			String st = cmj.armarJson();
-			System.out.println(st);
+			//System.out.println(st);
 			if (!st.equals(""))
 				enviar(st);
 
@@ -128,7 +133,7 @@ public class EnvioRestClient implements Runnable {
 	public void start() {
 		// Crea el scheduler
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-		// Programa la ejecución cada 2 segundos del hilo (servicio).		
+		// Programa la ejecución cada 2 segundos del hilo (servicio).
 		// La ejecuión empieza a los 3 segundos
 		executor.scheduleAtFixedRate(this, 2, 5, TimeUnit.SECONDS);
 	}

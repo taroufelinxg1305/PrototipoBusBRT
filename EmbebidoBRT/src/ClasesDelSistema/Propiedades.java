@@ -7,49 +7,32 @@ import java.util.Properties;
 /*   
  * Esta clase contiene la informacion del bus y del dispositivo embebido
  */
-public class Propiedades {
-	private String placa; // Placa del bus que lleva este dispositivo embebido
-	private String codDispo; // Codigo que identifica este dispositivo
-	private String uriServicio; // uri donde esta el servicio de recolectar en
-								// CloudBRT
-	private int ptoTCP; // el puerto que va a utilizar el mytcpserver;
-
+public class Propiedades extends Properties {
+	
 	public String getPlaca() {
-		return placa;
+		return getProperty("placa");
 	}
 
 	public String getCodDispo() {
-		return codDispo;
+		return getProperty("codigo");
 	}
 
 	public String getUriServicio() {
-		return uriServicio;
+		return getProperty("uri");
 	}
 
 	public int getPtoTCP() {
-		return ptoTCP;
+		return Integer.parseInt(getProperty("puertoTcp"));
 	}
 
 	/*
 	 * Constructor de la clase
 	 */
 	public Propiedades() {
-		setPropiedades(getPropiedades());
+		this("config.properties");
 	}
-
-	private void setPropiedades(Properties prop) {
-		placa = prop.getProperty("placa");
-		codDispo = prop.getProperty("codigo");
-		uriServicio = prop.getProperty("uri");
-		ptoTCP = Integer.parseInt(prop.getProperty("puertoTcp"));
-	}
-
-	private Properties getPropiedades() {
-
-		// se crea una instancia a la clase Properties
-		Properties propiedades = new Properties();
-		// se leen el archivo "configuraciones"
-		String propFileName = "config.properties";
+	
+	public Propiedades(String propFileName) {
 		InputStream inputStream;
 
 		inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
@@ -57,16 +40,17 @@ public class Propiedades {
 		try {
 
 			if (inputStream != null) {
-				propiedades.load(inputStream);
+				load(inputStream);
 			} else {
 				throw new FileNotFoundException("Archivo de configuraciones '" + propFileName + "' no se encontro en el Claspath");
 			}
 			inputStream.close();
 
 		} catch (Exception e) {
-			System.out.println("Exception: " + e);
+			e.printStackTrace();
 		} 
-		return propiedades;
 	}
+	
+
 
 }

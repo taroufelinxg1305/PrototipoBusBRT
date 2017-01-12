@@ -17,24 +17,23 @@ import com.google.common.eventbus.EventBus;
  */
 public class Launcher {
 
-	private static Propiedades EsteVehiculoProperties = new Propiedades();
-	private static MyGnssSensor gpsSensor = new MyGnssSensor(
-			EsteVehiculoProperties.getPtoTCP());
-	private static SensorTermometro myTempSensor = new SensorTermometro();
-	private static CrearMensajeJson cmj = new CrearMensajeJson();
-	private static EnvioRestClient erc = new EnvioRestClient(
-			EsteVehiculoProperties.getUriServicio());
-	private static GuardarMensajes gm = new GuardarMensajes();
-	private static EventBus myEventBus = new EventBus();
-
 	public static void main(String[] args) {
 
-		myEventBus.register(cmj);
-		gpsSensor.setBus(myEventBus);
-		myEventBus.post(EsteVehiculoProperties);
+		Propiedades propiedades = new Propiedades();
+		MyGnssSensor gpsSensor = new MyGnssSensor(propiedades.getPtoTCP());
+		SensorTermometro myTempSensor = new SensorTermometro();
+		CrearMensajeJson cmj = new CrearMensajeJson();
+		EnvioRestClient erc = new EnvioRestClient(propiedades.getUriServicio());
+		GuardarMensajes gm = new GuardarMensajes();
+		EventBus myEventBus = new EventBus();
+
+		myEventBus.register(cmj);		
+		myEventBus.post(propiedades);
+		
 		myTempSensor.setBus(myEventBus);
 		myTempSensor.start();
-
+		
+		gpsSensor.setBus(myEventBus);
 		gpsSensor.start();
 
 		erc.setProductorMensaje(cmj);

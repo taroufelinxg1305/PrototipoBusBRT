@@ -59,3 +59,38 @@
 {"Placa":"XDB725","Tde":"2017/01/12 06:03:52","ProximaParada":0,"Coordenada":{"Latitud":"7.02311","Longitud":"-73.06275","CodigoDispo":"B001","Temperatura":"32 grados"}}
 {"Placa":"XDB725","Tde":"2017/01/12 06:03:57","ProximaParada":0,"Coordenada":{"Latitud":"7.02425","Longitud":"-73.06345","CodigoDispo":"B001","Temperatura":"32 grados"}}
 {"Placa":"XDB725","Tde":"2017/01/12 06:28:29","ProximaParada":0,"Coordenada":{"Latitud":"7.00274","Longitud":"-73.05468","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:24:28","ProximaParada":0,"Coordenada":{"Latitud":"7.00383","Longitud":"-73.05516","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:24:38","ProximaParada":0,"Coordenada":{"Latitud":"7.00556","Longitud":"-73.0558","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:24:48","ProximaParada":0,"Coordenada":{"Latitud":"7.00784","Longitud":"-73.0559","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:24:58","ProximaParada":0,"Coordenada":{"Latitud":"7.00891","Longitud":"-73.05577","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:25:08","ProximaParada":0,"Coordenada":{"Latitud":"7.01068","Longitud":"-73.05543","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:25:18","ProximaParada":0,"Coordenada":{"Latitud":"7.01178","Longitud":"-73.05567","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:25:28","ProximaParada":0,"Coordenada":{"Latitud":"7.01363","Longitud":"-73.05638","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:25:38","ProximaParada":0,"Coordenada":{"Latitud":"7.01407","Longitud":"-73.0565","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:25:48","ProximaParada":0,"Coordenada":{"Latitud":"7.01522","Longitud":"-73.05682","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:25:58","ProximaParada":0,"Coordenada":{"Latitud":"7.0162","Longitud":"-73.05725","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:26:08","ProximaParada":0,"Coordenada":{"Latitud":"7.01739","Longitud":"-73.05748","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:26:18","ProximaParada":0,"Coordenada":{"Latitud":"7.01789","Longitud":"-73.05768","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:27:11","ProximaParada":0,"Coordenada":{"Latitud":"7.00297","Longitud":"-73.05478","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:27:21","ProximaParada":0,"Coordenada":{"Latitud":"7.00536","Longitud":"-73.05577","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:27:31","ProximaParada":0,"Coordenada":{"Latitud":"7.00727","Longitud":"-73.05589","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:53:11","ProximaParada":0,"Coordenada":{"Latitud":"7.00274","Longitud":"-73.05468","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 14:53:21","ProximaParada":0,"Coordenada":{"Latitud":"7.0052","Longitud":"-73.05573","CodigoDispo":"B001","Temperatura":"32 grados"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:07:26","ProximaParada":0,"Coordenada":{"Latitud":"7.00274","Longitud":"-73.05468","CodigoDispo":"B001","Temperatura":"31"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:07:36","ProximaParada":0,"Coordenada":{"Latitud":"7.0052","Longitud":"-73.05573","CodigoDispo":"B001","Temperatura":"30"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:07:46","ProximaParada":0,"Coordenada":{"Latitud":"7.00681","Longitud":"-73.05586","CodigoDispo":"B001","Temperatura":"30"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:07:56","ProximaParada":0,"Coordenada":{"Latitud":"7.00853","Longitud":"-73.05584","CodigoDispo":"B001","Temperatura":"31"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:08:06","ProximaParada":0,"Coordenada":{"Latitud":"7.01021","Longitud":"-73.0555","CodigoDispo":"B001","Temperatura":"31"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:08:50","ProximaParada":0,"Coordenada":{"Latitud":"7.00274","Longitud":"-73.05468","CodigoDispo":"B001","Temperatura":"32"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:09:00","ProximaParada":0,"Coordenada":{"Latitud":"7.0052","Longitud":"-73.05573","CodigoDispo":"B001","Temperatura":"24"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:09:10","ProximaParada":0,"Coordenada":{"Latitud":"7.00681","Longitud":"-73.05586","CodigoDispo":"B001","Temperatura":"25"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:09:20","ProximaParada":0,"Coordenada":{"Latitud":"7.00853","Longitud":"-73.05584","CodigoDispo":"B001","Temperatura":"25"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:09:30","ProximaParada":0,"Coordenada":{"Latitud":"7.01021","Longitud":"-73.0555","CodigoDispo":"B001","Temperatura":"32"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:09:40","ProximaParada":0,"Coordenada":{"Latitud":"7.01125","Longitud":"-73.05549","CodigoDispo":"B001","Temperatura":"27"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:09:50","ProximaParada":0,"Coordenada":{"Latitud":"7.01313","Longitud":"-73.0562","CodigoDispo":"B001","Temperatura":"27"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:10:00","ProximaParada":0,"Coordenada":{"Latitud":"7.01388","Longitud":"-73.05646","CodigoDispo":"B001","Temperatura":"21"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:10:10","ProximaParada":0,"Coordenada":{"Latitud":"7.01452","Longitud":"-73.05656","CodigoDispo":"B001","Temperatura":"20"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:10:20","ProximaParada":0,"Coordenada":{"Latitud":"7.01581","Longitud":"-73.05705","CodigoDispo":"B001","Temperatura":"20"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:10:30","ProximaParada":0,"Coordenada":{"Latitud":"7.01651","Longitud":"-73.05736","CodigoDispo":"B001","Temperatura":"25"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:10:40","ProximaParada":0,"Coordenada":{"Latitud":"7.01777","Longitud":"-73.05761","CodigoDispo":"B001","Temperatura":"21"}}
+{"Placa":"XDB725","Tde":"2017/01/12 15:10:50","ProximaParada":0,"Coordenada":{"Latitud":"7.01916","Longitud":"-73.05869","CodigoDispo":"B001","Temperatura":"21"}}
