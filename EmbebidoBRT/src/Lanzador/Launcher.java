@@ -3,7 +3,6 @@ package Lanzador;
 import ArmarMensaje.CrearMensajeJson;
 import ClasesDelSistema.Propiedades;
 import EnviarMensaje.EnvioRestClient;
-import EnviarMensaje.IniciarRecorrido;
 import GNSS.MyGnssSensor;
 import OtrosSensores.SensorTermometro;
 import Persistencia.GuardarMensajes;
@@ -26,7 +25,6 @@ public class Launcher {
 		EnvioRestClient erc = new EnvioRestClient(propiedades.getUriServicio());
 		GuardarMensajes gm = new GuardarMensajes();
 		EventBus myEventBus = new EventBus();
-
 		myEventBus.register(cmj);		
 		myEventBus.post(propiedades);
 		
@@ -35,15 +33,14 @@ public class Launcher {
 		
 		gpsSensor.setBus(myEventBus);
 		gpsSensor.start();
-
+		
 		erc.setProductorMensaje(cmj);
 		gm.setProductorMensaje(cmj);
 
 		erc.start();
 		gm.start();
 
-		IniciarRecorrido.iniciarPAM();
-		IniciarRecorrido.iniciarReco();
+		
 
 	}
 

@@ -46,8 +46,7 @@ public class MyTCPLocalServer implements Runnable {
 						if (input == null || input.equals(".")) {
 							break;
 						}
-						// Hace el tratamiento al texto recibido, en este caso
-						// imprimir en la consola
+						// Hace el tratamiento al texto recibido
 						currentCoord = NmeatoDatos.separarTokenAndGetCoor(input);
 						if(currentCoord!=null)eb.post(currentCoord);
 					}

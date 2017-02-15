@@ -16,10 +16,10 @@ public class GuardarMensajes implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		String st = cmj.armarJson();
-		if (!st.equals(""))
+		if (!st.equals("")) {
 			Operaciones.guardar(st);
-		
-		System.out.println("Guardando mensaje en persistencia");
+			System.out.println("Guardando mensaje en persistencia");
+		}
 	}
 
 	/**
