@@ -1,2 +1,0 @@
-{"Placa":"XDB725","Tde":"2017/02/13 05:20:01","ProximaParada":0,"Coordenada":{"Latitud":"7.00383","Longitud":"-73.05516","CodigoDispo":"B001","Temperatura":"25"}}
-{"Placa":"XDB725","Tde":"2017/02/13 05:20:11","ProximaParada":0,"Coordenada":{"Latitud":"7.00556","Longitud":"-73.0558","CodigoDispo":"B001","Temperatura":"31"}}
