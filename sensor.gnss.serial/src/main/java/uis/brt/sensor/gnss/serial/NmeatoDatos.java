@@ -57,10 +57,12 @@ public class NmeatoDatos {
 	}
 
 	public static boolean isGgaLine(String descriptor) {
-		boolean isGga = false;
-		if (descriptor.equals("$GPGGA"))
-			isGga = true;
-		return isGga;
+		System.out.println("--------------------------------->" + descriptor);
+		String st = descriptor.substring(descriptor.length()-3);
+		System.out.println("--------------------------------->" + st);
+		if (st.equals("GGA"))
+			return true;
+		return false;
 	}
 
 	public static double degMinSecToDec(String dms) {

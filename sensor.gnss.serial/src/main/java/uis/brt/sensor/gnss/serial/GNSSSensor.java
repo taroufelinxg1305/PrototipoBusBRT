@@ -43,6 +43,8 @@ public class GNSSSensor implements Sensor, Runnable {
 			ScheduledExecutorService executor = Executors
 					.newScheduledThreadPool(1);
 			executor.scheduleAtFixedRate(this, 5, 3, TimeUnit.SECONDS);
+			
+			System.out.println("GNSS Serial Open " + baudRate);
 		}
 	}
 
@@ -54,7 +56,7 @@ public class GNSSSensor implements Sensor, Runnable {
 	public void configure(Properties props) {
 		serialPortName = props.getProperty("gnss.serial.port");
 		baudRate =  Integer.parseInt(props.getProperty("gnss.serial.baudrate"));
-
+		
 	}
 
 	public void run() {
@@ -66,10 +68,17 @@ public class GNSSSensor implements Sensor, Runnable {
 			int numRead = serialPort.readBytes(readBuffer, readBuffer.length);
 			String str = new String(readBuffer, StandardCharsets.US_ASCII);
 			System.out.println("Total " + numRead + " bytes.");
+			//System.out.println(str);
+			
+			String lines[] = str.split("\\r\\n|\\n|\\r");
+			
+			for (String line : lines) {
+				Coordinate currentCoord = NmeatoDatos.separarTokenAndGetCoor(line);
+				if (currentCoord != null)
+					eventBus.post(currentCoord);
+			}
 
-			Coordinate currentCoord = NmeatoDatos.separarTokenAndGetCoor(str);
-			if (currentCoord != null)
-				eventBus.post(currentCoord);
+
 
 		}
 

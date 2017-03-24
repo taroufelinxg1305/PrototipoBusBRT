@@ -116,7 +116,7 @@ public class RestSender implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 
-		System.out.println("Runnninnnnnnggggggggggggggggg");
+		
 		String st = cmj.armarJson();
 		System.out.println("JSON" + st);
 		
