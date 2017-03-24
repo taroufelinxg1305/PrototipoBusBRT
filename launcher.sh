@@ -1,0 +1,1 @@
+java -cp "./*;./sensors/*" uis.brt.launcher.Launcher
