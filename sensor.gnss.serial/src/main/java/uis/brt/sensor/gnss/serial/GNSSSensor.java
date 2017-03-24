@@ -17,6 +17,7 @@ public class GNSSSensor implements Sensor, Runnable {
 	private EventBus eventBus;
 	private String serialPortName;
 	private SerialPort serialPort;
+	private int baudRate;
 
 	public GNSSSensor() {
 
@@ -34,8 +35,10 @@ public class GNSSSensor implements Sensor, Runnable {
 		System.out.println("Starting GNSS Serial");
 		
 		serialPort = SerialPort.getCommPort(serialPortName);
+		
+		
 		if (serialPort != null) {
-			serialPort.setBaudRate(115200);
+			serialPort.setBaudRate(baudRate);
 			serialPort.openPort();
 			ScheduledExecutorService executor = Executors
 					.newScheduledThreadPool(1);
@@ -50,6 +53,7 @@ public class GNSSSensor implements Sensor, Runnable {
 
 	public void configure(Properties props) {
 		serialPortName = props.getProperty("gnss.serial.port");
+		baudRate =  Integer.parseInt(props.getProperty("gnss.serial.baudrate"));
 
 	}
 
