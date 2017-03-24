@@ -32,18 +32,23 @@ public class NmeatoDatos {
 			double lat = 0, lon = 0; // en base a tok[2] y tok[3] lleno lat,
 										// en base a tok[4] y tok[5] lleno lon
 
+			lat = latitude2Decimal(tok[2], tok[3]);
+			lon = longitude2Decimal(tok[4], tok[5]);
+			
+			/*
 			if (tok[3].equals("N"))
 				lat = degMinSecToDec(tok[2]);
 			else if (tok[3].equals("S"))
 				lat = (-1) * degMinSecToDec(tok[2]); // si la latitud pertenece
 														// al hemisferio
-			// sur, la
-			// coordenada absoluta de latitud es
-			// negatica
+			
+
 			if (tok[5].equals("E"))
 				lon = degMinSecToDec(tok[4]);
 			else if (tok[5].equals("W"))
 				lon = (-1) * degMinSecToDec(tok[4]);
+			*/
+			
 			// si la longitud pertene al hemisferio
 			// oeste,
 			// la coordenada absoluta de longitud es
@@ -57,12 +62,28 @@ public class NmeatoDatos {
 	}
 
 	public static boolean isGgaLine(String descriptor) {
-		System.out.println("--------------------------------->" + descriptor);
-		String st = descriptor.substring(descriptor.length()-3);
-		System.out.println("--------------------------------->" + st);
+		String st = descriptor.substring(descriptor.length() - 3);
 		if (st.equals("GGA"))
 			return true;
 		return false;
+	}
+
+	static float latitude2Decimal(String lat, String NS) {
+		float med = Float.parseFloat(lat.substring(2)) / 60.0f;
+		med += Float.parseFloat(lat.substring(0, 2));
+		if (NS.startsWith("S")) {
+			med = -med;
+		}
+		return med;
+	}
+
+	static float longitude2Decimal(String lon, String WE) {
+		float med = Float.parseFloat(lon.substring(3)) / 60.0f;
+		med += Float.parseFloat(lon.substring(0, 3));
+		if (WE.startsWith("W")) {
+			med = -med;
+		}
+		return med;
 	}
 
 	public static double degMinSecToDec(String dms) {
